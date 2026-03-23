@@ -932,31 +932,57 @@ code {
     font-size: 90px !important;
   }
 
-  /* ---- Cover grid & sections card ---- */
+  /* ---- Cover slide: force 2-col layout ---- */
+  #cover {
+    display: block !important;
+    padding: 36px 56px 28px !important;
+  }
   .cover-grid {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 32px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 40px !important;
     align-items: center !important;
+    width: 100% !important;
+    height: calc(100vh - 64px) !important;
+  }
+  .cover-left {
+    flex: 1 !important;
+    text-align: left !important;
   }
   .sections-card {
+    flex: 1 !important;
     padding: 20px 24px !important;
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(61,143,212,0.15) !important;
+    border-radius: 16px !important;
+    backdrop-filter: none !important;
   }
   .sections-card h3 {
-    font-size: 16px !important;
+    font-size: 15px !important;
     margin-bottom: 10px !important;
+  }
+  .sections-card ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   .sections-card li {
     padding: 4px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-bottom: 1px solid rgba(255,255,255,0.04) !important;
   }
   .sec-num {
     font-size: 11px !important;
   }
   .sec-title {
-    font-size: 13px !important;
+    font-size: 12px !important;
+    display: block !important;
   }
   .sec-desc {
-    font-size: 10px !important;
+    font-size: 9px !important;
+    display: block !important;
   }
 
   /* ---- Cards & grids: tighter spacing ---- */
