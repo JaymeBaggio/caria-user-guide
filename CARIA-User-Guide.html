@@ -1,0 +1,1761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARIA User Guide — Channel 4 Partnerships</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #011222;
+  --navy-light: #0a1e33;
+  --navy-mid: #061828;
+  --white: #F2F2F3;
+  --white-pure: #ffffff;
+  --accent: #2a6fa8;
+  --accent-soft: #1a4a6e;
+  --accent-glow: #3d8fd4;
+  --muted: #8899aa;
+  --border: #1e3348;
+  --green: #34d399;
+  --green-soft: rgba(52,211,153,0.15);
+  --amber: #c4873a;
+  --amber-soft: rgba(196,135,58,0.15);
+  --red-soft: #f87171;
+  --red-bg: rgba(248,113,113,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 20px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  height: 100vh;
+}
+
+/* ---- NAV ---- */
+.topnav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(1,18,34,0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  height: 64px;
+  gap: 32px;
+}
+.topnav .brand {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  border-right: 1px solid var(--border);
+  padding-right: 32px;
+}
+.topnav a {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.topnav a:hover { color: var(--white); }
+.topnav .spacer { flex: 1; }
+
+/* ---- SLIDE SYSTEM ---- */
+.slides-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.slide {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  padding: 80px 120px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow-y: auto;
+  overflow-x: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  transform: translateX(40px);
+}
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+  z-index: 2;
+}
+.slide.exit-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+/* ---- SLIDE NAV CONTROLS (centred floating bar) ---- */
+.slide-controls {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  background: rgba(6,24,40,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.slide-controls.hidden {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateX(-50%) translateY(12px) !important;
+}
+.slide-arrow {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border);
+  color: var(--white);
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.slide-arrow:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(42,111,168,0.3);
+}
+.slide-arrow:disabled {
+  opacity: 0.2;
+  cursor: default;
+  background: transparent;
+  border-color: var(--border);
+  box-shadow: none;
+}
+.slide-title-display {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  min-width: 100px;
+  text-align: center;
+}
+.slide-counter {
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.slide-counter .current-num {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 18px;
+}
+.slide-nav-dots { display: none; }
+.nav-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---- KEYBOARD HINT ---- */
+.key-hint {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: rgba(136,153,170,0.4);
+  text-transform: uppercase;
+}
+
+.slide.dark { background: var(--navy); color: var(--white); }
+.slide.dark-gradient {
+  background: linear-gradient(170deg, var(--navy) 0%, var(--navy-mid) 50%, var(--navy-light) 100%);
+  color: var(--white);
+}
+.slide.accent-bg { background: var(--navy-light); }
+
+/* ---- TYPOGRAPHY ---- */
+.label {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.4;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+h1 span { color: var(--accent-glow); }
+
+h2 {
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  margin-bottom: 20px;
+}
+h2 span { color: var(--accent-glow); }
+
+h3 {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 12px;
+}
+
+h4 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 24px;
+  color: var(--muted);
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+p { max-width: 680px; }
+
+/* ---- GHOST NUMBERS ---- */
+.ghost-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 120px;
+  font-weight: 700;
+  color: rgba(61,143,212,0.12);
+  position: absolute;
+  right: 80px;
+  top: 80px;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ---- STEP CARDS ---- */
+.steps-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  margin-top: 40px;
+}
+.step-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.step-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 30px rgba(42,111,168,0.08);
+}
+.step-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+.step-card .step-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(61,143,212,0.3);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.step-card h4 { color: var(--white); }
+.step-card p { font-size: 17px; color: var(--muted); line-height: 1.6; max-width: none; }
+
+/* ---- COMPONENT MOCKUPS ---- */
+.mockup {
+  background: var(--navy-mid);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 32px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.02);
+}
+.mockup-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--border);
+}
+.mockup-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+}
+.mockup-dot.r { background: rgba(160,69,69,0.5); }
+.mockup-dot.y { background: rgba(196,135,58,0.5); }
+.mockup-dot.g { background: rgba(45,138,94,0.5); }
+.mockup-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-left: 8px;
+}
+.mockup-body { padding: 20px; }
+
+.mockup-nav {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+.mockup-nav span {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.mockup-nav span:first-child { border-radius: 6px 0 0 6px; }
+.mockup-nav span:last-child { border-radius: 0 6px 6px 0; }
+.mockup-nav span.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--white-pure);
+}
+
+.mockup-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.mockup-table th {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 400;
+}
+.mockup-table td {
+  font-size: 16px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  color: var(--white);
+}
+.badge {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.badge-sent { background: var(--green-soft); color: var(--green); }
+.badge-unsent { background: var(--amber-soft); color: var(--amber); }
+.badge-rejected { background: var(--red-bg); color: var(--red-soft); }
+
+/* ---- DETAIL BLOCK MOCKUP ---- */
+.detail-block {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 12px;
+}
+.detail-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.detail-block-header h5 {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.detail-block-header .actions {
+  display: flex;
+  gap: 8px;
+}
+.detail-block-header .actions span {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+.detail-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 12px;
+}
+.detail-field .fl {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.detail-field .fv {
+  font-size: 16px;
+  color: var(--white);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+.detail-field .fv.highlight {
+  border-color: var(--accent);
+  color: var(--accent-glow);
+}
+
+/* ---- INFO GRID ---- */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 32px;
+}
+.info-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent-glow);
+  border-radius: 12px;
+  padding: 28px;
+  transition: border-color 0.3s;
+}
+.info-card:hover { border-color: rgba(42,111,168,0.3); }
+.info-card h4 { margin-bottom: 8px; }
+.info-card p { font-size: 17px; color: var(--muted); max-width: none; line-height: 1.6; }
+
+/* ---- STATION GROUPS ---- */
+.station-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+.station-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  text-align: center;
+  transition: border-color 0.3s, transform 0.2s;
+}
+.station-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.station-card .icon { font-size: 28px; margin-bottom: 12px; display: block; opacity: 0.7; }
+.station-card h4 { font-size: 18px; margin-bottom: 6px; }
+.station-card p { font-size: 15px; color: var(--muted); max-width: none; line-height: 1.5; }
+
+/* ---- GOTCHA CARDS ---- */
+.gotcha-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 32px;
+}
+.gotcha {
+  background: rgba(42,111,168,0.04);
+  border: 1px solid rgba(61,143,212,0.15);
+  border-radius: 10px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.gotcha::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--accent-glow);
+  border-radius: 3px 0 0 3px;
+}
+.gotcha h4 { font-size: 19px; color: var(--white); margin-bottom: 6px; }
+.gotcha p { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: none; }
+.gotcha .fix {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background: rgba(61,143,212,0.08);
+  border: 1px solid rgba(61,143,212,0.15);
+  border-radius: 6px;
+  font-size: 15px;
+  color: var(--accent-glow);
+  line-height: 1.5;
+}
+
+/* ---- TIMELINE ---- */
+.timeline {
+  margin-top: 40px;
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+  padding-left: 24px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 6px;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--navy);
+  box-shadow: 0 0 0 3px rgba(42,111,168,0.2);
+}
+.timeline-item h4 { font-size: 20px; margin-bottom: 4px; }
+.timeline-item p { font-size: 17px; color: var(--muted); max-width: none; }
+
+/* ---- CLOCK FORMAT ---- */
+.clock-format {
+  font-family: 'Space Mono', monospace;
+  font-size: 32px;
+  color: var(--accent-glow);
+  letter-spacing: 2px;
+  margin: 24px 0;
+  padding: 24px 32px;
+  background: rgba(42,111,168,0.06);
+  border: 1px solid rgba(42,111,168,0.15);
+  border-radius: 10px;
+  display: inline-block;
+}
+.clock-format .dim { color: var(--muted); }
+.clock-format .hl { color: var(--green); }
+
+/* ---- KEY-VALUE LIST ---- */
+.kv-list { margin-top: 20px; }
+.kv-row {
+  display: flex;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding: 10px 0;
+}
+.kv-row:last-child { border: none; }
+.kv-key {
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  min-width: 160px;
+  padding-top: 2px;
+}
+.kv-val { font-size: 18px; color: var(--white); }
+
+/* ---- SPLIT ---- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* ---- STAT ROW ---- */
+.stat-row {
+  display: flex;
+  gap: 60px;
+  margin-top: 40px;
+}
+.stat { text-align: center; }
+.stat .num {
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -2px;
+}
+.stat .num span { color: var(--accent); }
+.stat .desc {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* ---- ALERT BOX ---- */
+.alert {
+  padding: 18px 24px;
+  border-radius: 8px;
+  font-size: 17px;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+.alert-warn {
+  background: rgba(61,143,212,0.08);
+  border: 1px solid rgba(61,143,212,0.25);
+  color: var(--white);
+}
+.alert-danger {
+  background: var(--red-bg);
+  border: 1px solid rgba(160,69,69,0.25);
+  color: var(--red-soft);
+}
+.alert-info {
+  background: rgba(42,111,168,0.08);
+  border: 1px solid rgba(42,111,168,0.2);
+  color: var(--accent-glow);
+}
+.alert-success {
+  background: var(--green-soft);
+  border: 1px solid rgba(45,138,94,0.25);
+  color: var(--green);
+}
+
+code {
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--accent-glow);
+}
+
+/* ---- FOOTER (hidden in carousel mode) ---- */
+.footer { display: none; }
+
+/* ---- DOWNLOAD BUTTON ---- */
+.dl-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--accent);
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.dl-btn:hover {
+  background: var(--accent-glow);
+  box-shadow: 0 0 20px rgba(61,143,212,0.3);
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* ---- LARGE LAPTOPS / SMALLER DESKTOPS (≤1440px) ---- */
+@media (max-width: 1440px) {
+  .slide { padding: 80px 80px 110px; }
+  h1 { font-size: 60px; }
+  h2 { font-size: 44px; }
+  .subtitle { font-size: 21px; }
+  .ghost-num { font-size: 100px; right: 60px; top: 70px; }
+  .stat .num { font-size: 48px; }
+  .stat-row { gap: 40px; }
+  .split { gap: 40px; }
+  .clock-format { font-size: 26px; padding: 18px 24px; }
+}
+
+/* ---- TABLETS / SMALL LAPTOPS (≤1024px) ---- */
+@media (max-width: 1024px) {
+  .slide { padding: 74px 48px 110px; }
+  h1 { font-size: 48px; letter-spacing: -1px; }
+  h2 { font-size: 36px; letter-spacing: -1px; }
+  h3 { font-size: 24px; }
+  h4 { font-size: 19px; }
+  body { font-size: 17px; }
+  .subtitle { font-size: 18px; max-width: 520px; }
+  .ghost-num { font-size: 80px; right: 40px; top: 60px; opacity: 0.08; }
+
+  /* Nav bar */
+  .slide-controls { padding: 10px 20px; gap: 14px; bottom: 40px; }
+  .slide-arrow { width: 40px; height: 40px; font-size: 18px; }
+  .slide-title-display { font-size: 12px; }
+  .slide-counter { font-size: 12px; }
+  .slide-counter .current-num { font-size: 15px; }
+
+  /* Top nav */
+  .topnav { padding: 0 28px; height: 56px; gap: 20px; }
+  .topnav .brand { font-size: 12px; letter-spacing: 2px; padding-right: 20px; }
+  .key-hint { display: none; }
+
+  /* Grids: collapse to fewer columns */
+  .steps-row { grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .step-card { padding: 22px; }
+  .step-card .step-num { font-size: 36px; }
+  .step-card p { font-size: 15px; }
+
+  .info-grid { gap: 16px; }
+  .info-card { padding: 20px; }
+  .info-card p { font-size: 15px; }
+
+  .station-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .station-card { padding: 18px; }
+
+  .gotcha-grid { gap: 14px; }
+  .gotcha { padding: 18px; }
+  .gotcha h4 { font-size: 17px; }
+  .gotcha p { font-size: 14px; }
+
+  .split { grid-template-columns: 1fr; gap: 28px; }
+  .stat-row { gap: 28px; flex-wrap: wrap; }
+  .stat .num { font-size: 40px; }
+
+  .clock-format { font-size: 22px; padding: 16px 20px; }
+
+  .detail-fields { grid-template-columns: 1fr 1fr; }
+
+  .mockup-table td { font-size: 14px; }
+  .mockup-table th { font-size: 10px; }
+}
+
+/* ---- MOBILE LANDSCAPE / SMALL TABLETS (≤768px) ---- */
+@media (max-width: 768px) {
+  .slide { padding: 64px 28px 100px; }
+  h1 { font-size: 38px; margin-bottom: 16px; }
+  h2 { font-size: 30px; margin-bottom: 14px; }
+  h3 { font-size: 21px; }
+  h4 { font-size: 17px; }
+  body { font-size: 16px; line-height: 1.55; }
+  .subtitle { font-size: 16px; max-width: 100%; }
+  .ghost-num { font-size: 60px; right: 20px; top: 50px; }
+
+  .topnav { padding: 0 16px; height: 48px; gap: 12px; }
+  .topnav .brand { font-size: 10px; letter-spacing: 1.5px; padding-right: 12px; }
+  .dl-btn { font-size: 10px; padding: 6px 14px; }
+
+  .slide-controls { padding: 8px 16px; gap: 10px; bottom: 16px; border-radius: 10px; }
+  .slide-arrow { width: 36px; height: 36px; font-size: 16px; border-radius: 8px; }
+  .slide-title-display { font-size: 10px; min-width: 60px; }
+  .slide-counter { font-size: 11px; }
+  .slide-counter .current-num { font-size: 14px; }
+
+  .steps-row { grid-template-columns: 1fr; gap: 12px; margin-top: 24px; }
+  .step-card { padding: 18px; }
+  .step-card .step-num { font-size: 28px; margin-bottom: 10px; }
+
+  .info-grid { grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+  .info-card { padding: 16px; }
+
+  .station-grid { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+  .station-card { padding: 14px; }
+  .station-card h4 { font-size: 15px; }
+  .station-card p { font-size: 13px; }
+
+  .gotcha-grid { grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+  .gotcha { padding: 14px; }
+
+  .detail-fields { grid-template-columns: 1fr; }
+  .detail-block { padding: 14px 16px; }
+
+  .stat-row { gap: 20px; margin-top: 24px; }
+  .stat .num { font-size: 32px; }
+  .stat .desc { font-size: 9px; }
+
+  .kv-key { min-width: 120px; font-size: 11px; }
+  .kv-val { font-size: 16px; }
+
+  .clock-format { font-size: 18px; padding: 14px 18px; }
+
+  .timeline { padding-left: 28px; }
+  .timeline-item { margin-bottom: 20px; }
+  .timeline-item h4 { font-size: 17px; }
+  .timeline-item p { font-size: 15px; }
+
+  .alert { padding: 14px 18px; font-size: 15px; }
+}
+
+/* ---- MOBILE PORTRAIT (≤480px) ---- */
+@media (max-width: 480px) {
+  .slide { padding: 56px 18px 90px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 18px; }
+  .subtitle { font-size: 15px; }
+  .ghost-num { font-size: 44px; right: 14px; top: 44px; }
+
+  .topnav .brand { font-size: 9px; }
+  .dl-btn { font-size: 9px; padding: 5px 10px; }
+
+  .slide-controls { padding: 6px 12px; gap: 8px; bottom: 12px; }
+  .slide-arrow { width: 32px; height: 32px; font-size: 14px; }
+  .slide-title-display { display: none; }
+  .slide-counter .current-num { font-size: 13px; }
+
+  .station-grid { grid-template-columns: 1fr; }
+  .stat-row { flex-direction: column; align-items: center; }
+
+  .mockup-nav span { font-size: 10px; padding: 4px 8px; }
+  .badge { font-size: 10px; padding: 2px 8px; }
+
+  .kv-row { flex-direction: column; gap: 2px; }
+  .kv-key { min-width: 0; }
+}
+
+/* ============================================
+   PRINT / PDF STYLES
+   ============================================ */
+@media print {
+
+  /* ---- Page setup ---- */
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+
+  /* ---- Force colour printing ---- */
+  *, *::before, *::after {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* ---- Reset body ---- */
+  body {
+    overflow: visible !important;
+    height: auto !important;
+    background: #011222 !important;
+    font-size: 15px !important;
+  }
+
+  /* ---- Hide UI chrome ---- */
+  .topnav, .slide-controls, .dl-btn, .key-hint, .footer {
+    display: none !important;
+  }
+
+  /* ---- Reset slides container ---- */
+  .slides-container {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* ---- Each slide = one printed page ---- */
+  .slide {
+    position: relative !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    height: 100vh !important;          /* exactly one page */
+    min-height: 0 !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;        /* clip anything that overflows */
+    padding: 36px 56px 28px !important; /* tighter padding so content fits */
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: flex-start;        /* top-align, no centering push */
+    page-break-after: always;
+    break-after: page;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .slide:last-of-type {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  /* ---- Backgrounds ---- */
+  .slide.dark { background: #011222 !important; }
+  .slide.dark-gradient { background: #061828 !important; }
+  .slide.accent-bg { background: #0a1e33 !important; }
+
+  /* ---- Scale down typography to fit pages ---- */
+  h1 { font-size: 48px !important; margin-bottom: 8px !important; }
+  h2 { font-size: 36px !important; margin-bottom: 6px !important; }
+  h3 { font-size: 21px !important; }
+  h4 { font-size: 17px !important; }
+  .subtitle { font-size: 17px !important; margin-bottom: 16px !important; }
+  .label { font-size: 12px !important; }
+  p { margin-bottom: 8px !important; }
+
+  /* ---- Ghost numbers ---- */
+  .ghost-num {
+    position: absolute !important;
+    right: 40px !important;
+    top: 24px !important;
+    font-size: 90px !important;
+  }
+
+  /* ---- Cards & grids: tighter spacing ---- */
+  .info-grid, .station-grid, .gotcha-grid {
+    gap: 12px !important;
+  }
+  .steps-row {
+    gap: 10px !important;
+  }
+  .info-card, .station-card, .step-card {
+    padding: 14px 16px !important;
+  }
+  .info-card h3, .station-card h3 {
+    font-size: 18px !important;
+    margin-bottom: 6px !important;
+  }
+  .info-card p, .station-card p {
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  /* ---- Mockups: scale down ---- */
+  .mockup {
+    padding: 12px !important;
+    margin-top: 12px !important;
+    margin-bottom: 8px !important;
+  }
+  .mockup-bar {
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+    margin-bottom: 8px !important;
+  }
+  .detail-block {
+    padding: 10px 14px !important;
+    margin-bottom: 8px !important;
+  }
+  .detail-block-header h5 {
+    font-size: 12px !important;
+  }
+  .detail-block-row {
+    gap: 8px !important;
+  }
+  .detail-block-row > div {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+  }
+
+  /* ---- Gotcha cards ---- */
+  .gotcha {
+    padding: 14px 16px !important;
+  }
+  .gotcha h4 {
+    font-size: 16px !important;
+    margin-bottom: 4px !important;
+  }
+  .gotcha p {
+    font-size: 13px !important;
+  }
+
+  /* ---- Alert boxes ---- */
+  .alert {
+    padding: 12px 16px !important;
+    margin-top: 10px !important;
+    font-size: 14px !important;
+  }
+
+  /* ---- Split layout ---- */
+  .split {
+    gap: 24px !important;
+  }
+
+  /* ---- Key-value rows ---- */
+  .kv-row {
+    padding: 6px 0 !important;
+  }
+  .kv-key {
+    font-size: 11px !important;
+  }
+  .kv-val {
+    font-size: 14px !important;
+  }
+
+  /* ---- Stat row ---- */
+  .stat-row {
+    gap: 12px !important;
+  }
+  .stat-card {
+    padding: 14px !important;
+  }
+  .stat-card .num {
+    font-size: 28px !important;
+  }
+
+  /* ---- Prevent content breaking inside elements ---- */
+  .step-card, .info-card, .station-card, .gotcha,
+  .detail-block, .mockup, .alert, .stat-card,
+  .steps-row, .info-grid, .station-grid, .gotcha-grid,
+  .split, .stat-row {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* ---- Preserve text colours ---- */
+  h1 span, h2 span { color: #3d8fd4 !important; }
+  .label { color: #8899aa !important; }
+  .subtitle { color: #8899aa !important; }
+  .muted { color: #8899aa !important; }
+  code { color: #3d8fd4 !important; background: rgba(255,255,255,0.05) !important; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="brand">CARIA User Guide</div>
+  <div class="spacer"></div>
+  <span class="key-hint">Use ← → arrow keys</span>
+  <button class="dl-btn" onclick="window.print()">↓ Download PDF</button>
+</nav>
+
+<!-- SLIDES CONTAINER -->
+<div class="slides-container">
+
+<!-- SLIDE 1: COVER -->
+<section class="slide dark-gradient active" id="cover" data-title="Cover">
+  <div class="label">Channel 4 Partnerships</div>
+  <h1>CARIA<br><span>User Guide</span></h1>
+  <p class="subtitle">Everything you need to create, manage, and send Copy Rotation Instructions for UK television advertising.</p>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num">~95<span>%</span></div>
+      <div class="desc">UK TV Spot Revenue</div>
+    </div>
+    <div class="stat">
+      <div class="num">3</div>
+      <div class="desc">Step Workflow</div>
+    </div>
+    <div class="stat">
+      <div class="num">30<span>hr</span></div>
+      <div class="desc">Broadcast Clock</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 2: WHAT IS CARIA -->
+<section class="slide dark" id="overview" data-title="What is CARIA?">
+  <div class="ghost-num">01</div>
+  <div class="label">Overview</div>
+  <h2>What is <span>CARIA</span>?</h2>
+  <p class="subtitle">CARIA (Campaign Approvals Rotation Instructions Attribution) is the platform where agencies and sales houses create Copy Rotation Instructions — telling traffic departments exactly which creatives should air in which spots.</p>
+  <div class="kv-list" style="max-width:600px; margin-top:32px;">
+    <div class="kv-row">
+      <div class="kv-key">Platform</div>
+      <div class="kv-val">cri.peachmedia.com</div>
+    </div>
+    <div class="kv-row">
+      <div class="kv-key">Login</div>
+      <div class="kv-val">Browser-autofilled credentials</div>
+    </div>
+    <div class="kv-row">
+      <div class="kv-key">Operated by</div>
+      <div class="kv-val">Optimad / Peach / Cape</div>
+    </div>
+    <div class="kv-row">
+      <div class="kv-key">Date Format</div>
+      <div class="kv-val">DD.MM.YYYY (European)</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 3: NAVIGATION -->
+<section class="slide accent-bg" data-title="Navigation">
+  <div class="ghost-num">02</div>
+  <div class="label">Navigation</div>
+  <h2>Finding your way <span>around</span></h2>
+  <p class="subtitle" style="margin-bottom:16px;">CARIA has four key areas. You'll spend most of your time in the Outbox and the CRI editor.</p>
+  <div class="mockup" style="max-width:700px;">
+    <div class="mockup-header">
+      <div class="mockup-dot r"></div>
+      <div class="mockup-dot y"></div>
+      <div class="mockup-dot g"></div>
+      <div class="mockup-title">cri.peachmedia.com</div>
+    </div>
+    <div class="mockup-body">
+      <div class="mockup-nav">
+        <span>Home</span>
+        <span>Inbox</span>
+        <span class="active">Outbox</span>
+        <span>Create</span>
+        <span>Info</span>
+        <span>Admin</span>
+        <span>Help</span>
+      </div>
+    </div>
+  </div>
+  <div class="info-grid" style="margin-top:32px;">
+    <div class="info-card">
+      <h4>Inbox</h4>
+      <p>Received bookings from media agencies. Filter by Linear TV/VOD, search by booking ID. Select a booking and click "Create CRI" to start.</p>
+    </div>
+    <div class="info-card">
+      <h4>Outbox</h4>
+      <p>All your CRIs live here. Filter by client, product, month, or status. Click a row to reveal Edit and View/Send buttons.</p>
+    </div>
+    <div class="info-card">
+      <h4>Create</h4>
+      <p>Start a new CRI from scratch (without a booking). Enter client, product, campaign dates, and clock numbers manually.</p>
+    </div>
+    <div class="info-card">
+      <h4>Home</h4>
+      <p>Dashboard with quick links to View Inbox and recent activity. Your starting point after logging in.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 4: 3-STEP WORKFLOW -->
+<section class="slide dark-gradient" id="workflow" data-title="3-Step Workflow">
+  <div class="label">Process</div>
+  <h2>The 3-step <span>workflow</span></h2>
+  <p class="subtitle">Every CRI follows the same three steps — from campaign setup to detail blocks to sending.</p>
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <h4>Edit Copy</h4>
+      <p>Add clock numbers, set campaign dates, fill in client/product details, and define mandatory fields like copy status and delivery info.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <h4>Copy Relationships</h4>
+      <p>Create detail blocks that tell traffic exactly which creative runs on which stations, dates, and time bands. This is the most complex step.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <h4>Review &amp; Send</h4>
+      <p>Preview the CRI, check for clashes, tick the traffic department checkboxes, and send. Always send to both Channel 4 Traffic and C4 Streaming.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 5: CREATING A CRI -->
+<section class="slide dark" id="create" data-title="Creating a CRI">
+  <div class="ghost-num">03</div>
+  <div class="label">Getting Started</div>
+  <h2>Creating a <span>CRI</span></h2>
+  <p class="subtitle">There are two ways to create a CRI — from a media booking or from scratch.</p>
+  <div class="info-grid">
+    <div class="info-card">
+      <h4>From a Booking</h4>
+      <p>Go to the <strong>Inbox</strong>, locate your booking (filter on Linear TV/VOD or search by booking ID). Click on the booking, tick the checkbox, and press <strong>"Create CRI"</strong>. Most fields auto-populate from the booking data.</p>
+      <div class="alert alert-info" style="margin-top:12px;">Can't find a booking? Use the "Request Product Link" button in the Inbox.</div>
+    </div>
+    <div class="info-card">
+      <h4>From Scratch</h4>
+      <p>Click <strong>"Create"</strong> from the nav bar. Media type defaults to Linear TV/VOD. Enter the client name, product name, campaign dates, and first transmission month. Then add clock numbers manually or from the copy library.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 6: STEP 1 — EDIT COPY -->
+<section class="slide accent-bg" id="step1" data-title="Step 1: Edit Copy">
+  <div class="ghost-num">S1</div>
+  <div class="label">Step 1</div>
+  <h2>Edit <span>Copy</span></h2>
+  <p class="subtitle">Define your campaign details and add your clock numbers. This is where you set the foundation for everything else.</p>
+  <div class="split" style="margin-top:40px;">
+    <div>
+      <h3>Mandatory Fields</h3>
+      <div class="kv-list">
+        <div class="kv-row">
+          <div class="kv-key">Product</div>
+          <div class="kv-val">Campaign product name</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">CRI Dates</div>
+          <div class="kv-val">From/To in DD.MM.YYYY</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">1st TX Month</div>
+          <div class="kv-val">First transmission month</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Copy Title</div>
+          <div class="kv-val">Creative name per clock</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Copy Status</div>
+          <div class="kv-val">"Due" or "Held"</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Delivery</div>
+          <div class="kv-val">Company + approx date</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Clock Number Format</h3>
+      <div class="clock-format">
+        <span class="dim">REC/</span>KKSB<span class="hl">134</span><span class="dim">/</span>020
+      </div>
+      <div class="kv-list" style="margin-top:16px;">
+        <div class="kv-row">
+          <div class="kv-key">REC</div>
+          <div class="kv-val">Prefix (usually "REC")</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">KKSB</div>
+          <div class="kv-val">Brand/product code</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">134</div>
+          <div class="kv-val">Creative variant ID</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">020</div>
+          <div class="kv-val">Duration/spot ID (20s)</div>
+        </div>
+      </div>
+      <div class="alert alert-warn" style="margin-top:16px;">In CARIA, clock numbers are split across 5 input boxes: <code>REC / KK / SB / 134 / 020</code></div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 7: STEP 2 — COPY RELATIONSHIPS -->
+<section class="slide dark-gradient" id="step2" data-title="Step 2: Rotation">
+  <div class="ghost-num">S2</div>
+  <div class="label">Step 2</div>
+  <h2>Copy <span>Relationships</span></h2>
+  <p class="subtitle">Build detail blocks — the core of every CRI. Each block tells traffic which creative runs on which stations, when, and how often.</p>
+  <div class="mockup" style="max-width:800px; margin-top:32px;">
+    <div class="mockup-header">
+      <div class="mockup-dot r"></div>
+      <div class="mockup-dot y"></div>
+      <div class="mockup-dot g"></div>
+      <div class="mockup-title">Step 2 — Detail Blocks</div>
+    </div>
+    <div class="mockup-body">
+      <div class="detail-block">
+        <div class="detail-block-header">
+          <h5>Detail 1</h5>
+          <div class="actions"><span>Edit</span><span>Delete</span></div>
+        </div>
+        <div class="detail-fields">
+          <div class="detail-field"><div class="fl">Stations</div><div class="fv">C4-NETWORK</div></div>
+          <div class="detail-field"><div class="fl">Date Range</div><div class="fv">27.03 — 31.05</div></div>
+          <div class="detail-field"><div class="fl">Time Band</div><div class="fv">06:00 — 29:59</div></div>
+          <div class="detail-field"><div class="fl">Clock</div><div class="fv highlight">REC/KKSB134/020</div></div>
+        </div>
+      </div>
+      <div class="detail-block">
+        <div class="detail-block-header">
+          <h5>Detail 2</h5>
+          <div class="actions"><span>Edit</span><span>Delete</span></div>
+        </div>
+        <div class="detail-fields">
+          <div class="detail-field"><div class="fl">Stations</div><div class="fv">Owned + C4 Streaming</div></div>
+          <div class="detail-field"><div class="fl">Date Range</div><div class="fv">27.03 — 30.03</div></div>
+          <div class="detail-field"><div class="fl">Time Band</div><div class="fv">22:00 — 22:29</div></div>
+          <div class="detail-field"><div class="fl">Clock</div><div class="fv highlight">REC/KKSB134/020</div></div>
+        </div>
+      </div>
+      <div style="text-align:center; padding:8px 0;">
+        <span style="font-size:12px; color:var(--accent); border:1px dashed var(--border); border-radius:6px; padding:6px 16px;">+ Insert detail block</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 8: DETAIL BLOCK FIELDS -->
+<section class="slide dark" data-title="Detail Block Anatomy">
+  <div class="label">Step 2 — continued</div>
+  <h2>Detail block <span>anatomy</span></h2>
+  <p class="subtitle">Each detail block can carry a combination of the following fields. Hidden fields must be revealed via "Show more / less detail".</p>
+  <div class="info-grid" style="margin-top:32px;">
+    <div class="info-card">
+      <h4>Stations</h4>
+      <p>Which station group to target. Click "Select stations" to choose from C4-NETWORK, Owned, Partners, or C4 Streaming. Use "Add stations from Detail N" to copy from another block.</p>
+    </div>
+    <div class="info-card">
+      <h4>Date Range</h4>
+      <p>Hidden by default. Click "Show more / less detail" then select "Date Range" to reveal. Enter From and To dates in DD.MM.YYYY. Use "Copy dates down" for multiple clocks.</p>
+    </div>
+    <div class="info-card">
+      <h4>Time Band</h4>
+      <p>Hidden by default. Reveal via "Show more / less detail" then "Time Band". Defaults to full day (06:00–29:59). For cherry pick, narrow to the specific hour or 30-minute window.</p>
+    </div>
+    <div class="info-card">
+      <h4>Clock Numbers</h4>
+      <p>Add via "Add copy -->>" dropdown. Check boxes and click "Add". The Add button only appears on empty blocks — always add all clocks to a fresh block at once.</p>
+    </div>
+  </div>
+  <div class="alert alert-warn" style="max-width:700px; margin-top:24px;">
+    <strong>Important:</strong> "Show more / less detail" resets after each selection. Reveal Date Range first, set dates, then reveal Time Band separately.
+  </div>
+</section>
+
+<!-- SLIDE 9: ROTATION TYPES -->
+<section class="slide accent-bg" data-title="Rotation Types">
+  <div class="ghost-num">04</div>
+  <div class="label">Rotation Types</div>
+  <h2>How creatives <span>rotate</span></h2>
+  <div class="steps-row">
+    <div class="step-card">
+      <div class="step-num">R</div>
+      <h4>Ratio</h4>
+      <p>Multiple creatives share slots with a defined split. Add all clocks to one block, set ratio numbers (e.g. 1:1 for equal, 2:1 for weighted). Ratios must be whole numbers, max 10.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">S</div>
+      <h4>Sequence</h4>
+      <p>Creatives play in a specific order, then repeat. Add clocks to one block, assign sequence positions (1, 2, 3…). Traffic plays them in that fixed order.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">C</div>
+      <h4>Cherry Pick</h4>
+      <p>Specific creatives assigned to specific spots — no randomness. Requires individual detail blocks per unique date/station/time combination. The most complex type.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 10: CHERRY PICK -->
+<section class="slide dark-gradient" id="cherry" data-title="Cherry Pick">
+  <div class="ghost-num">05</div>
+  <div class="label">Advanced</div>
+  <h2>Cherry Pick <span>campaigns</span></h2>
+  <p class="subtitle">The most labour-intensive rotation type. You'll receive a schedule with exact spot assignments and must create detail blocks for each one.</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h4>1. Parse the rotation data</h4>
+      <p>Extract each spot: date, station/sales house, time, creative name, and clock number.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>2. Map to station groups</h4>
+      <p>Map sales house codes to CARIA groups. Codes like ABC1WO and AD1634 both map to "Owned".</p>
+    </div>
+    <div class="timeline-item">
+      <h4>3. Plan detail blocks</h4>
+      <p>Group spots by: <strong>date + station group + time band (hour)</strong>. If two spots share the same group, merge into one block with both clocks at ratio 1:1.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>4. Create blocks in CARIA</h4>
+      <p>For each group: insert a new empty block, select stations, reveal date range and time band, add clocks, and save.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>5. Check for clashes</h4>
+      <p>CARIA flags red warnings if blocks overlap. Fix by merging duplicates or adjusting ranges.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>6. Fix CRI dates &amp; send</h4>
+      <p>Verify the "To" date hasn't auto-narrowed in Step 1. Then send to both traffic departments.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 11: 30-MIN SPLITTING -->
+<section class="slide dark" data-title="Window Splitting">
+  <div class="label">Cherry Pick — Pro Tip</div>
+  <h2>30-minute <span>window splitting</span></h2>
+  <p class="subtitle">When two spots share the same hour but need different creatives, split the hour into two 30-minute windows.</p>
+  <div class="split" style="margin-top:40px; max-width:900px;">
+    <div>
+      <h3 style="color:var(--red-soft);">Problem</h3>
+      <p style="font-size:17px; color:var(--muted);">Two spots at 22:27 and 22:42 on the same date and station, each needing a different clock. A 1:1 ratio means traffic can assign either randomly.</p>
+      <div class="detail-block" style="margin-top:16px; border-color:rgba(160,69,69,0.3);">
+        <div class="detail-block-header"><h5 style="color:var(--red-soft);">Detail 7 (Wrong)</h5></div>
+        <div class="detail-fields" style="grid-template-columns:1fr 1fr;">
+          <div class="detail-field"><div class="fl">Time</div><div class="fv">22:00 — 22:59</div></div>
+          <div class="detail-field"><div class="fl">Clocks</div><div class="fv">KKSB134 + KKSB136</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--green);">Solution</h3>
+      <p style="font-size:17px; color:var(--muted);">Split into two blocks. Each clock is alone in its window — traffic has no choice but to assign correctly.</p>
+      <div class="detail-block" style="margin-top:16px; border-color:rgba(45,138,94,0.3);">
+        <div class="detail-block-header"><h5 style="color:var(--green);">Detail 7</h5></div>
+        <div class="detail-fields" style="grid-template-columns:1fr 1fr;">
+          <div class="detail-field"><div class="fl">Time</div><div class="fv">22:00 — 22:29</div></div>
+          <div class="detail-field"><div class="fl">Clock</div><div class="fv highlight">KKSB134</div></div>
+        </div>
+      </div>
+      <div class="detail-block" style="border-color:rgba(45,138,94,0.3);">
+        <div class="detail-block-header"><h5 style="color:var(--green);">Detail 8</h5></div>
+        <div class="detail-fields" style="grid-template-columns:1fr 1fr;">
+          <div class="detail-field"><div class="fl">Time</div><div class="fv">22:30 — 22:59</div></div>
+          <div class="detail-field"><div class="fl">Clock</div><div class="fv highlight">KKSB136</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 12: STATION GROUPS -->
+<section class="slide accent-bg" id="stations" data-title="Station Groups">
+  <div class="ghost-num">06</div>
+  <div class="label">Station Groups</div>
+  <h2>Channel 4 <span>stations</span></h2>
+  <p class="subtitle">When clicking "Select stations" in a detail block, you'll see these groups under the Channel 4 tree.</p>
+  <div class="station-grid">
+    <div class="station-card">
+      <h4>C4-NETWORK</h4>
+      <p>Channel 4 main network. The flagship linear channel.</p>
+    </div>
+    <div class="station-card">
+      <h4>Owned</h4>
+      <p>E4, E4 Extra, More4, Film4, 4Seven, and related channels.</p>
+    </div>
+    <div class="station-card">
+      <h4>Partners</h4>
+      <p>Third-party partner channels carried by Channel 4 sales.</p>
+    </div>
+    <div class="station-card">
+      <h4>C4 Streaming</h4>
+      <p>VOD / streaming inventory. Required for C4 Streaming Traffic Dept.</p>
+    </div>
+  </div>
+  <div class="alert alert-danger" style="max-width:700px; margin-top:24px;">
+    <strong>Critical:</strong> To send to C4 Streaming Traffic Dept, you must select <strong>both</strong> "Owned" AND "C4 Streaming" on your detail blocks. Without "C4 Streaming" selected, the traffic department won't see any updates and its checkbox will be greyed out.
+  </div>
+</section>
+
+<!-- SLIDE 13: STEP 3 — SEND -->
+<section class="slide dark-gradient" id="step3" data-title="Step 3: Send">
+  <div class="ghost-num">S3</div>
+  <div class="label">Step 3</div>
+  <h2>Review &amp; <span>Send</span></h2>
+  <div class="split" style="margin-top:32px;">
+    <div>
+      <p class="subtitle">The final step. Preview your CRI, check for red clash warnings, then send to traffic.</p>
+      <div class="kv-list" style="margin-top:24px;">
+        <div class="kv-row">
+          <div class="kv-key">How to get here</div>
+          <div class="kv-val">Save from Step 2 → Outbox → click row → "View / Send"</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Traffic Depts</div>
+          <div class="kv-val">Tick BOTH checkboxes before sending</div>
+        </div>
+        <div class="kv-row">
+          <div class="kv-key">Red warnings</div>
+          <div class="kv-val">Clashing blocks must be fixed first</div>
+        </div>
+      </div>
+      <div class="alert alert-warn" style="margin-top:24px;">Don't click the Step 3 nav link directly from Step 2 — it can cause a 404. Always go via the Outbox.</div>
+    </div>
+    <div>
+      <div class="mockup">
+        <div class="mockup-header">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-title">Traffic Departments</div>
+        </div>
+        <div class="mockup-body">
+          <div style="display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--border);">
+            <div style="width:16px;height:16px;border:2px solid var(--green);border-radius:3px;display:flex;align-items:center;justify-content:center;">
+              <span style="color:var(--green);font-size:11px;font-weight:700;">✓</span>
+            </div>
+            <span style="font-size:13px;">Channel 4 Traffic Department</span>
+            <span class="badge badge-unsent" style="margin-left:auto;">NOT SENT</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:10px; padding:10px 0;">
+            <div style="width:16px;height:16px;border:2px solid var(--green);border-radius:3px;display:flex;align-items:center;justify-content:center;">
+              <span style="color:var(--green);font-size:11px;font-weight:700;">✓</span>
+            </div>
+            <span style="font-size:13px;">C4 Streaming Traffic Dept</span>
+            <span class="badge badge-unsent" style="margin-left:auto;">NOT SENT</span>
+          </div>
+          <div style="margin-top:16px; text-align:right;">
+            <span style="background:var(--accent);color:#fff;padding:8px 24px;border-radius:6px;font-size:13px;font-weight:600;">Send CRI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 14: 30-HOUR CLOCK -->
+<section class="slide dark" data-title="Broadcast Clock">
+  <div class="ghost-num">07</div>
+  <div class="label">Reference</div>
+  <h2>The 30-hour <span>broadcast clock</span></h2>
+  <p class="subtitle">UK television uses a 30-hour clock. The broadcast day starts at 06:00 and runs to 29:59 (which is 05:59 the next calendar day).</p>
+  <div class="info-grid" style="margin-top:32px; max-width:700px;">
+    <div class="info-card">
+      <h4>Standard Times</h4>
+      <p><code>21:45</code> → Band <code>21:00 – 21:59</code><br>
+         <code>22:41</code> → Band <code>22:00 – 22:59</code><br>
+         <code>19:15</code> → Band <code>19:00 – 19:59</code></p>
+    </div>
+    <div class="info-card">
+      <h4>After Midnight</h4>
+      <p><code>00:30</code> → <code>24:30</code> → Band <code>24:00 – 24:59</code><br>
+         <code>01:30</code> → <code>25:30</code> → Band <code>25:00 – 25:59</code><br>
+         <code>05:00</code> → <code>29:00</code> → Band <code>29:00 – 29:59</code></p>
+    </div>
+  </div>
+  <div class="alert alert-info" style="max-width:700px; margin-top:24px;">
+    CARIA time band fields default to <code>06:00 – 29:59</code> (whole broadcast day). For cherry pick campaigns, always narrow to the specific hour or 30-minute window.
+  </div>
+</section>
+
+<!-- SLIDE 15: OUTBOX STATUSES -->
+<section class="slide accent-bg" data-title="CRI Statuses">
+  <div class="label">Reference</div>
+  <h2>CRI <span>statuses</span></h2>
+  <p class="subtitle">Your CRIs will show different statuses in the Outbox as they move through the process.</p>
+  <div class="mockup" style="max-width:800px; margin-top:32px;">
+    <div class="mockup-header">
+      <div class="mockup-dot r"></div>
+      <div class="mockup-dot y"></div>
+      <div class="mockup-dot g"></div>
+      <div class="mockup-title">Outbox</div>
+    </div>
+    <div class="mockup-body">
+      <table class="mockup-table">
+        <thead><tr><th>CRI Ref</th><th>Client</th><th>Product</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--accent);">CRI733886</td><td>Nestle KitKat</td><td>KitKat Sharing Bar</td><td><span class="badge badge-sent">SENT</span></td></tr>
+          <tr><td style="color:var(--accent);">CRI733862</td><td>Monzo</td><td>Brand</td><td><span class="badge badge-unsent">NOT SENT (1)</span></td></tr>
+          <tr><td style="color:var(--accent);">CRI733850</td><td>Samsung</td><td>Galaxy S26</td><td><span class="badge badge-sent">ACCEPTED</span></td></tr>
+          <tr><td style="color:var(--accent);">CRI733841</td><td>Deliveroo</td><td>Spring Campaign</td><td><span class="badge badge-rejected">REJECTED</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="kv-list" style="max-width:600px; margin-top:24px;">
+    <div class="kv-row"><div class="kv-key">Not sent (N)</div><div class="kv-val">N traffic departments haven't received it yet</div></div>
+    <div class="kv-row"><div class="kv-key">Sent</div><div class="kv-val">Sent to traffic, awaiting response</div></div>
+    <div class="kv-row"><div class="kv-key">Accepted</div><div class="kv-val">Traffic accepted the instructions</div></div>
+    <div class="kv-row"><div class="kv-key">Rejected</div><div class="kv-val">Traffic rejected — needs fixing and resending</div></div>
+  </div>
+</section>
+
+<!-- SLIDE 16: GOTCHAS -->
+<section class="slide dark-gradient" id="gotchas" data-title="Known Gotchas">
+  <div class="ghost-num">!</div>
+  <div class="label">Watch Out</div>
+  <h2>Known <span>gotchas</span></h2>
+  <p class="subtitle">Real issues discovered through hands-on use. These will trip you up if you don't know about them.</p>
+  <div class="gotcha-grid">
+    <div class="gotcha">
+      <h4>CRI dates auto-narrow</h4>
+      <p>Every save may shrink the CRI date range to match the narrowest range across your detail blocks.</p>
+      <div class="fix"><strong>Fix:</strong> Always check Step 1 and reset the "To" date after detail block changes. Do this last before sending.</div>
+    </div>
+    <div class="gotcha">
+      <h4>"Add copy" button missing</h4>
+      <p>The "Add" button inside "Add copy -->>" only appears when a block has zero clocks assigned.</p>
+      <div class="fix"><strong>Fix:</strong> Create a NEW empty block and add ALL clocks at once. Never try to add to an existing block.</div>
+    </div>
+    <div class="gotcha">
+      <h4>Delete triggers confirm dialog</h4>
+      <p>Clicking Delete pops up a browser confirmation that automation tools can't dismiss.</p>
+      <div class="fix"><strong>Fix:</strong> Warn the user before deleting that they'll need to click OK on the popup manually.</div>
+    </div>
+    <div class="gotcha">
+      <h4>Time field corruption</h4>
+      <p>Typing into time band fields can produce corrupted values like "22::0" instead of "22:00".</p>
+      <div class="fix"><strong>Fix:</strong> Use form_input (set value) rather than typing. Always verify time values after setting.</div>
+    </div>
+    <div class="gotcha">
+      <h4>Step 3 nav link crashes</h4>
+      <p>Clicking "3. review / send" from within Step 2 can cause a 404 or session crash.</p>
+      <div class="fix"><strong>Fix:</strong> Save from Step 2 → Outbox → click row → "View / Send". Never click Step 3 directly.</div>
+    </div>
+    <div class="gotcha">
+      <h4>C4 Streaming checkbox greyed out</h4>
+      <p>If detail blocks only have "Owned" stations, C4 Streaming Traffic Dept won't detect changes.</p>
+      <div class="fix"><strong>Fix:</strong> Add both "Owned" AND "C4 Streaming" station groups to enable sending to both traffic depts.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 17: QUICK REFERENCE -->
+<section class="slide dark" id="ref" data-title="Cheat Sheet">
+  <div class="ghost-num">QR</div>
+  <div class="label">Quick Reference</div>
+  <h2>Cheat <span>sheet</span></h2>
+  <div class="split" style="margin-top:32px;">
+    <div>
+      <h3>Before You Send — Checklist</h3>
+      <div class="kv-list" style="margin-top:16px;">
+        <div class="kv-row"><div class="kv-key" style="color:var(--green);">✓ CRI Dates</div><div class="kv-val" style="font-size:17px;">Check the "To" date hasn't auto-narrowed</div></div>
+        <div class="kv-row"><div class="kv-key" style="color:var(--green);">✓ Stations</div><div class="kv-val" style="font-size:17px;">Include "C4 Streaming" alongside "Owned"</div></div>
+        <div class="kv-row"><div class="kv-key" style="color:var(--green);">✓ Clashes</div><div class="kv-val" style="font-size:17px;">No red warnings on Step 2</div></div>
+        <div class="kv-row"><div class="kv-key" style="color:var(--green);">✓ Traffic</div><div class="kv-val" style="font-size:17px;">Both department checkboxes ticked</div></div>
+        <div class="kv-row"><div class="kv-key" style="color:var(--green);">✓ Times</div><div class="kv-val" style="font-size:17px;">Verify all time band values are correct</div></div>
+        <div class="kv-row"><div class="kv-key" style="color:var(--green);">✓ Ratios</div><div class="kv-val" style="font-size:17px;">Correct ratios set for multi-clock blocks</div></div>
+      </div>
+    </div>
+    <div>
+      <h3>Key Shortcuts</h3>
+      <div class="kv-list" style="margin-top:16px;">
+        <div class="kv-row"><div class="kv-key">Copy dates down</div><div class="kv-val" style="font-size:17px;">Copies first row's dates to all rows</div></div>
+        <div class="kv-row"><div class="kv-key">Copy times down</div><div class="kv-val" style="font-size:17px;">Copies first row's times to all rows</div></div>
+        <div class="kv-row"><div class="kv-key">Add from Detail N</div><div class="kv-val" style="font-size:17px;">Copies station selection from another block</div></div>
+        <div class="kv-row"><div class="kv-key">Default View</div><div class="kv-val" style="font-size:17px;">Resets all Outbox filters</div></div>
+      </div>
+      <div class="alert alert-success" style="margin-top:24px;">
+        <strong>Pro tip:</strong> For cherry pick campaigns, plan ALL your detail blocks before touching CARIA. Use a tool like Copilot or a spreadsheet to group spots by date + station + hour, identify merges and 30-minute splits, then execute in CARIA.
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /slides-container -->
+
+<!-- SLIDE CONTROLS — centred floating bar -->
+<div class="slide-controls">
+  <button class="slide-arrow" id="prevBtn" onclick="prevSlide()" disabled>&#8592;</button>
+  <span class="slide-title-display" id="slideTitle">Cover</span>
+  <span class="slide-counter"><span class="current-num" id="currentNum">1</span> / <span id="totalNum">17</span></span>
+  <button class="slide-arrow" id="nextBtn" onclick="nextSlide()">&#8594;</button>
+  <div class="slide-nav-dots" id="slideDots"></div>
+</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('slideDots');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const currentNumEl = document.getElementById('currentNum');
+  const totalNumEl = document.getElementById('totalNum');
+  const slideTitleEl = document.getElementById('slideTitle');
+  let current = 0;
+  const total = slides.length;
+
+  totalNumEl.textContent = total;
+
+  // Build dots
+  for (let i = 0; i < total; i++) {
+    const dot = document.createElement('button');
+    dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateUI() {
+    slides.forEach((s, i) => {
+      s.classList.remove('active', 'exit-left');
+      if (i === current) s.classList.add('active');
+    });
+    const dots = dotsContainer.querySelectorAll('.slide-dot');
+    dots.forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    currentNumEl.textContent = current + 1;
+    slideTitleEl.textContent = slides[current].dataset.title || '';
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === total - 1;
+
+    // Scroll slide content to top
+    slides[current].scrollTop = 0;
+  }
+
+  function nextSlide() {
+    if (current < total - 1) { current++; updateUI(); }
+  }
+  function prevSlide() {
+    if (current > 0) { current--; updateUI(); }
+  }
+  function goToSlide(n) {
+    current = n; updateUI();
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); nextSlide(); showNav(); }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); prevSlide(); showNav(); }
+    if (e.key === 'Home') { e.preventDefault(); goToSlide(0); }
+    if (e.key === 'End') { e.preventDefault(); goToSlide(total - 1); }
+  });
+
+  // Expose globally
+  window.nextSlide = nextSlide;
+  window.prevSlide = prevSlide;
+
+  // ---- AUTO-HIDE NAV BAR ----
+  var navBar = document.querySelector('.slide-controls');
+  var hideTimer = null;
+  var HIDE_DELAY = 2500; // ms before nav fades out
+
+  function showNav() {
+    navBar.classList.remove('hidden');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function() {
+      navBar.classList.add('hidden');
+    }, HIDE_DELAY);
+  }
+
+  // Show on any mouse movement
+  document.addEventListener('mousemove', showNav);
+  // Show on touch
+  document.addEventListener('touchstart', showNav);
+  // Show on keyboard nav (already handled by keydown → nextSlide/prevSlide)
+  var origNext = nextSlide;
+  var origPrev = prevSlide;
+  function nextSlideShow() { origNext(); showNav(); }
+  function prevSlideShow() { origPrev(); showNav(); }
+  window.nextSlide = nextSlideShow;
+  window.prevSlide = prevSlideShow;
+  // Also show when clicking the nav arrows themselves
+  navBar.addEventListener('mouseenter', function() {
+    navBar.classList.remove('hidden');
+    clearTimeout(hideTimer);
+  });
+  navBar.addEventListener('mouseleave', function() {
+    hideTimer = setTimeout(function() {
+      navBar.classList.add('hidden');
+    }, HIDE_DELAY);
+  });
+
+  // Start hidden after initial delay
+  hideTimer = setTimeout(function() {
+    navBar.classList.add('hidden');
+  }, HIDE_DELAY);
+
+  updateUI();
+})();
+</script>
+
+</body>
+</html>
