@@ -1374,31 +1374,35 @@ code {
   <div class="ghost-num">05</div>
   <div class="label">Advanced</div>
   <h2>Cherry Pick <span>campaigns</span></h2>
-  <p class="subtitle" style="margin-bottom:8px;">The most labour-intensive rotation type. You'll receive a schedule with exact spot assignments and must create detail blocks for each one.</p>
-  <div class="timeline">
-    <div class="timeline-item">
-      <h4>1. Parse the rotation data</h4>
-      <p>Extract each spot: date, station/sales house, time, creative name, and clock number.</p>
+  <p class="subtitle">The most labour-intensive rotation type. You'll receive a schedule with exact spot assignments and must create detail blocks for each one.</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:28px;">
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>1. Parse the rotation data</h4>
+        <p>Extract each spot: date, station/sales house, time, creative name, and clock number.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2. Map to station groups</h4>
+        <p>Map sales house codes to CARIA groups. Codes like ABC1WO and AD1634 both map to "Owned".</p>
+      </div>
+      <div class="timeline-item">
+        <h4>3. Plan detail blocks</h4>
+        <p>Group spots by: <strong>date + station group + time band (hour)</strong>. If two spots share the same group, merge into one block with both clocks at ratio 1:1.</p>
+      </div>
     </div>
-    <div class="timeline-item">
-      <h4>2. Map to station groups</h4>
-      <p>Map sales house codes to CARIA groups. Codes like ABC1WO and AD1634 both map to "Owned".</p>
-    </div>
-    <div class="timeline-item">
-      <h4>3. Plan detail blocks</h4>
-      <p>Group spots by: <strong>date + station group + time band (hour)</strong>. If two spots share the same group, merge into one block with both clocks at ratio 1:1.</p>
-    </div>
-    <div class="timeline-item">
-      <h4>4. Create blocks in CARIA</h4>
-      <p>For each group: insert a new empty block, select stations, reveal date range and time band, add clocks, and save.</p>
-    </div>
-    <div class="timeline-item">
-      <h4>5. Check for clashes</h4>
-      <p>CARIA flags red warnings if blocks overlap. Fix by merging duplicates or adjusting ranges.</p>
-    </div>
-    <div class="timeline-item">
-      <h4>6. Fix CRI dates &amp; send</h4>
-      <p>Verify the "To" date hasn't auto-narrowed in Step 1. Then send to both traffic departments.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>4. Create blocks in CARIA</h4>
+        <p>For each group: insert a new empty block, select stations, reveal date range and time band, add clocks, and save.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>5. Check for clashes</h4>
+        <p>CARIA flags red warnings if blocks overlap. Fix by merging duplicates or adjusting ranges.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>6. Fix CRI dates &amp; send</h4>
+        <p>Verify the "To" date hasn't auto-narrowed in Step 1. Then send to both traffic departments.</p>
+      </div>
     </div>
   </div>
 </section>
