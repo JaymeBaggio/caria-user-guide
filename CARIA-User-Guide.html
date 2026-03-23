@@ -1495,7 +1495,32 @@ code {
       <div class="alert alert-warn" style="margin-top:24px;">Don't click the Step 3 nav link directly from Step 2 — it can cause a 404. Always go via the Outbox.</div>
     </div>
     <div>
-      <div class="mockup">
+      <!-- Nav bar mockup with red ring warning -->
+      <div class="mockup" style="margin-top:0;">
+        <div class="mockup-header">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-title">CRI Navigation Bar</div>
+        </div>
+        <div class="mockup-body" style="padding:14px 20px;">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">Edit CRI: <span style="color:var(--accent);">CRI733886</span></div>
+          <div style="display:flex; align-items:center; gap:0; font-size:13px; font-family:'Space Mono',monospace;">
+            <span style="color:var(--green);padding:6px 10px;background:rgba(52,211,153,0.1);border-radius:6px;">1. edit copy</span>
+            <span style="color:var(--muted);margin:0 6px;font-size:11px;">›› </span>
+            <span style="color:var(--accent);padding:6px 10px;background:rgba(42,111,168,0.15);border-radius:6px;font-weight:600;">2. copy relationships</span>
+            <span style="color:var(--muted);margin:0 6px;font-size:11px;">›› </span>
+            <span style="position:relative;padding:6px 10px;color:var(--muted);">3. review / send
+              <span style="position:absolute;inset:-6px -8px;border:2.5px solid var(--red-soft);border-radius:10px;pointer-events:none;"></span>
+              <span style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;font-family:'Inter',sans-serif;color:var(--red-soft);font-weight:700;white-space:nowrap;letter-spacing:0.5px;">✗ DON'T CLICK</span>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin:8px 0 16px;text-align:center;font-style:italic;">Clicking "3. review / send" from Step 2 causes a 404 error</div>
+
+      <!-- Traffic Departments mockup -->
+      <div class="mockup" style="margin-top:0;">
         <div class="mockup-header">
           <div class="mockup-dot r"></div>
           <div class="mockup-dot y"></div>
