@@ -793,7 +793,7 @@ code {
   .cover-grid { grid-template-columns: 1fr; gap: 32px; }
   .sections-card { padding: 28px 32px; }
   .sections-card li { font-size: 14px; padding: 9px 12px; }
-  .split { flex-direction: column; gap: 24px; }
+  .split { grid-template-columns: 1fr !important; gap: 24px !important; }
   .split > div { min-width: 0; }
   .grid-2, .grid-3 { grid-template-columns: 1fr 1fr; }
   .stat-row { gap: 32px; }
@@ -803,45 +803,138 @@ code {
 
 /* Mobile landscape / small tablets */
 @media (max-width: 768px) {
-  .slide { padding: 56px 28px 48px; }
-  h1 { font-size: 42px; }
-  h2 { font-size: 28px; }
-  h3 { font-size: 20px; }
-  h4 { font-size: 18px; }
-  .subtitle { font-size: 16px; max-width: 100%; }
-  body { font-size: 16px; }
-  .ghost-num { font-size: 60px; right: 24px; top: 40px; }
+  /* Allow slides to scroll on mobile instead of clipping */
+  .slide {
+    padding: 72px 24px 80px;
+    justify-content: flex-start;
+  }
+  h1 { font-size: 36px; letter-spacing: -1px; }
+  h2 { font-size: 26px; letter-spacing: -0.5px; }
+  h3 { font-size: 19px; }
+  h4 { font-size: 16px; }
+  .subtitle { font-size: 15px; max-width: 100%; }
+  body { font-size: 15px; }
+  .ghost-num { display: none; }
   .label { font-size: 10px; letter-spacing: 2px; }
-  .slide-controls { bottom: 16px; padding: 8px 16px; gap: 10px; }
-  .slide-arrow { width: 36px; height: 36px; font-size: 16px; }
-  .slide-title-display { font-size: 11px; max-width: 120px; }
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
-  .stat-row { gap: 28px; flex-wrap: wrap; justify-content: center; }
+
+  /* Nav controls — compact for mobile */
+  .slide-controls { bottom: 12px; padding: 8px 14px; gap: 10px; }
+  .slide-arrow { width: 34px; height: 34px; font-size: 15px; }
+  .slide-title-display { display: none; }
+  .slide-counter { font-size: 11px; }
+  .slide-counter .current-num { font-size: 13px; }
+
+  /* Force all grids to single column */
+  .grid-2, .grid-3 { grid-template-columns: 1fr !important; }
+  .split { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .info-grid { grid-template-columns: 1fr !important; }
+  .station-grid { grid-template-columns: 1fr 1fr !important; }
+
+  /* Cherry pick 2-col inline grid → single column on mobile */
+  [style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Stats */
+  .stat-row { gap: 24px; flex-wrap: wrap; justify-content: center; }
   .stat .num { font-size: 36px; }
+
+  /* Sections card */
+  .sections-card { padding: 20px 24px; }
   .sections-card li { font-size: 13px; padding: 8px 10px; gap: 10px; }
   .sections-card li .sec-desc { display: none; }
-  .kv-key { min-width: 100px; font-size: 10px; }
-  .kv-val { font-size: 14px; }
-  .card { padding: 20px; }
-  .topnav .brand { font-size: 11px; letter-spacing: 2px; }
-  .dl-btn { font-size: 11px; padding: 8px 16px; }
+
+  /* KV lists */
+  .kv-key { min-width: 90px; font-size: 10px; }
+  .kv-val { font-size: 14px !important; }
+
+  /* Cards & mockups */
+  .card { padding: 16px; }
+  .mockup { max-width: 100% !important; }
+  .mockup-body { padding: 12px !important; font-size: 12px; }
+  .mockup-body * { font-size: inherit; }
+
+  /* Topnav */
+  .topnav { padding: 0 16px; height: 52px; gap: 16px; }
+  .topnav .brand { font-size: 10px; letter-spacing: 1.5px; padding-right: 16px; }
+  .topnav a { font-size: 9px; }
+  .dl-btn { font-size: 10px; padding: 6px 12px; }
+
+  /* Alerts */
+  .alert { font-size: 13px; padding: 12px 16px; }
+
+  /* Timeline */
+  .timeline { padding-left: 28px; }
+  .timeline-item { margin-bottom: 14px; }
+  .timeline-item h4 { font-size: 15px; }
+  .timeline-item p { font-size: 13px; }
+
+  /* Gotcha cards */
+  .gotcha-grid { gap: 10px; }
+  .gotcha { padding: 12px 14px; }
+  .gotcha h4 { font-size: 14px; }
+  .gotcha p { font-size: 12px; }
+  .gotcha .fix { font-size: 11px; padding: 4px 8px; }
+
+  /* Step cards */
+  .steps-row { grid-template-columns: 1fr !important; gap: 16px; }
+  .step-card { padding: 20px; }
+
+  /* Detail fields tables */
+  .detail-fields {
+    font-size: 11px;
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .detail-fields[style*="grid-template-columns"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Cover page */
+  .cover-grid { gap: 24px; }
 }
 
 /* Mobile portrait */
 @media (max-width: 480px) {
-  .slide { padding: 48px 20px 40px; }
-  h1 { font-size: 34px; }
-  h2 { font-size: 24px; }
-  .subtitle { font-size: 15px; }
-  .ghost-num { display: none; }
-  .slide-title-display { display: none; }
-  .slide-controls { bottom: 12px; padding: 8px 12px; gap: 8px; }
-  .stat-row { flex-direction: column; align-items: center; gap: 16px; }
-  .stat .num { font-size: 32px; }
+  .slide { padding: 64px 16px 72px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 17px; }
+  .subtitle { font-size: 14px; }
+  body { font-size: 14px; }
+
+  .slide-controls { bottom: 8px; padding: 6px 10px; gap: 6px; }
+  .slide-arrow { width: 30px; height: 30px; font-size: 14px; }
+
+  .stat-row { flex-direction: column; align-items: center; gap: 12px; }
+  .stat .num { font-size: 28px; }
   .stat .desc { font-size: 9px; }
-  .sections-card { padding: 20px 24px; }
-  .sections-card li { padding: 7px 8px; }
+
+  .sections-card { padding: 16px 20px; }
+  .sections-card li { padding: 6px 8px; font-size: 12px; }
+
   .station-grid { grid-template-columns: 1fr !important; }
+  .station-card { padding: 16px; }
+  .station-card h4 { font-size: 15px; }
+  .station-card p { font-size: 13px; }
+
+  /* KV lists */
+  .kv-row { flex-direction: column; gap: 2px; }
+  .kv-key { min-width: auto; }
+
+  /* Topnav — hide nav links, keep brand + download */
+  .topnav a:not(.dl-btn) { display: none; }
+  .topnav .brand { border-right: none; padding-right: 0; }
+
+  /* Mockups */
+  .mockup-body { padding: 10px !important; }
+
+  /* Alerts */
+  .alert { font-size: 12px; padding: 10px 12px; }
+
+  /* Timeline */
+  .timeline { padding-left: 20px; }
+  .timeline-item h4 { font-size: 14px; }
+  .timeline-item p { font-size: 12px; }
 }
 
 /* ============================================
