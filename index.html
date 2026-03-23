@@ -535,7 +535,7 @@ p { max-width: 680px; }
 
 /* ---- TIMELINE ---- */
 .timeline {
-  margin-top: 40px;
+  margin-top: 24px;
   position: relative;
   padding-left: 40px;
 }
@@ -549,22 +549,22 @@ p { max-width: 680px; }
 }
 .timeline-item {
   position: relative;
-  margin-bottom: 32px;
+  margin-bottom: 18px;
   padding-left: 24px;
 }
 .timeline-item::before {
   content: '';
   position: absolute;
   left: -32px;
-  top: 6px;
-  width: 10px; height: 10px;
+  top: 5px;
+  width: 8px; height: 8px;
   border-radius: 50%;
   background: var(--accent);
   border: 2px solid var(--navy);
   box-shadow: 0 0 0 3px rgba(42,111,168,0.2);
 }
-.timeline-item h4 { font-size: 20px; margin-bottom: 4px; }
-.timeline-item p { font-size: 17px; color: var(--muted); max-width: none; }
+.timeline-item h4 { font-size: 17px; margin-bottom: 2px; }
+.timeline-item p { font-size: 14px; color: var(--muted); max-width: none; line-height: 1.5; }
 
 /* ---- CLOCK FORMAT ---- */
 .clock-format {
@@ -1374,7 +1374,7 @@ code {
   <div class="ghost-num">05</div>
   <div class="label">Advanced</div>
   <h2>Cherry Pick <span>campaigns</span></h2>
-  <p class="subtitle">The most labour-intensive rotation type. You'll receive a schedule with exact spot assignments and must create detail blocks for each one.</p>
+  <p class="subtitle" style="margin-bottom:8px;">The most labour-intensive rotation type. You'll receive a schedule with exact spot assignments and must create detail blocks for each one.</p>
   <div class="timeline">
     <div class="timeline-item">
       <h4>1. Parse the rotation data</h4>
