@@ -1295,10 +1295,10 @@ code {
         <li onclick="goToSlide(5)"><span class="sec-num">03</span><span><span class="sec-title">Edit Copy</span><span class="sec-desc">Add clock numbers and copy details</span></span></li>
         <li onclick="goToSlide(6)"><span class="sec-num">04</span><span><span class="sec-title">Rotation Detail</span><span class="sec-desc">Build detail blocks with dates, stations and creatives</span></span></li>
         <li onclick="goToSlide(9)"><span class="sec-num">05</span><span><span class="sec-title">Cherry Pick Campaigns</span><span class="sec-desc">Handle spot-specific scheduling</span></span></li>
-        <li onclick="goToSlide(11)"><span class="sec-num">06</span><span><span class="sec-title">Station Groups</span><span class="sec-desc">Map sales house codes to station groups</span></span></li>
-        <li onclick="goToSlide(12)"><span class="sec-num">07</span><span><span class="sec-title">Send to Traffic</span><span class="sec-desc">Submit your CRI to traffic departments</span></span></li>
-        <li onclick="goToSlide(15)"><span class="sec-num">08</span><span><span class="sec-title">Known Gotchas</span><span class="sec-desc">Common pitfalls and how to avoid them</span></span></li>
-        <li onclick="goToSlide(16)"><span class="sec-num">09</span><span><span class="sec-title">Cheat Sheet</span><span class="sec-desc">Quick reference for everyday tasks</span></span></li>
+        <li onclick="goToSlide(12)"><span class="sec-num">06</span><span><span class="sec-title">Station Groups</span><span class="sec-desc">Map sales house codes to station groups</span></span></li>
+        <li onclick="goToSlide(13)"><span class="sec-num">07</span><span><span class="sec-title">Send to Traffic</span><span class="sec-desc">Submit your CRI to traffic departments</span></span></li>
+        <li onclick="goToSlide(16)"><span class="sec-num">08</span><span><span class="sec-title">Known Gotchas</span><span class="sec-desc">Common pitfalls and how to avoid them</span></span></li>
+        <li onclick="goToSlide(17)"><span class="sec-num">09</span><span><span class="sec-title">Cheat Sheet</span><span class="sec-desc">Quick reference for everyday tasks</span></span></li>
       </ul>
     </div>
   </div>
@@ -1655,7 +1655,45 @@ code {
   </div>
 </section>
 
-<!-- SLIDE 12: STATION GROUPS -->
+<!-- SLIDE 12: DAY-OF-WEEK SPLITTING -->
+<section class="slide dark" data-title="Day-of-Week Splitting">
+  <div class="label">Detail Blocks — Pro Tip</div>
+  <h2>Day-of-week <span>splitting</span></h2>
+  <p class="subtitle">When a campaign needs different time bands on different days (e.g. Sunday vs weekdays), use the "Days of the week" option in "Show more / less detail" to split.</p>
+  <div class="split" style="margin-top:40px; max-width:900px;">
+    <div>
+      <h3 style="color:var(--amber);">Scenario</h3>
+      <p style="font-size:17px; color:var(--muted);">A campaign runs Mon–Sat at full broadcast day (06:00–29:00) but Sunday must end at 23:59. A single detail block can only have one time band.</p>
+      <div class="detail-block" style="margin-top:16px; border-color:rgba(196,135,58,0.3);">
+        <div class="detail-block-header"><h5 style="color:var(--amber);">Single Block (Can't Work)</h5></div>
+        <div class="detail-fields" style="grid-template-columns:1fr 1fr;">
+          <div class="detail-field"><div class="fl">Days</div><div class="fv">Mon–Sun</div></div>
+          <div class="detail-field"><div class="fl">Time</div><div class="fv">06:00 — ???</div></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="color:var(--green);">Solution</h3>
+      <p style="font-size:17px; color:var(--muted);">Create two detail blocks on the same date range with different day selections. CARIA treats different days as non-clashing — no errors on save.</p>
+      <div class="detail-block" style="margin-top:16px; border-color:rgba(45,138,94,0.3);">
+        <div class="detail-block-header"><h5 style="color:var(--green);">Detail 1 — Mon–Sat</h5></div>
+        <div class="detail-fields" style="grid-template-columns:1fr 1fr;">
+          <div class="detail-field"><div class="fl">Days</div><div class="fv highlight">Mon–Sat</div></div>
+          <div class="detail-field"><div class="fl">Time</div><div class="fv">06:00 — 29:00</div></div>
+        </div>
+      </div>
+      <div class="detail-block" style="border-color:rgba(45,138,94,0.3);">
+        <div class="detail-block-header"><h5 style="color:var(--green);">Detail 2 — Sunday</h5></div>
+        <div class="detail-fields" style="grid-template-columns:1fr 1fr;">
+          <div class="detail-field"><div class="fl">Days</div><div class="fv highlight">Sunday only</div></div>
+          <div class="detail-field"><div class="fl">Time</div><div class="fv">06:00 — 23:59</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 13: STATION GROUPS -->
 <section class="slide accent-bg" id="stations" data-title="Station Groups">
   <div class="ghost-num">06</div>
   <div class="label">Station Groups</div>
