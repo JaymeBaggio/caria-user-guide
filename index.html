@@ -1242,6 +1242,158 @@ code {
   .subtitle { color: #8899aa !important; }
   .muted { color: #8899aa !important; }
   code { color: #3d8fd4 !important; background: rgba(255,255,255,0.05) !important; }
+
+  /* ---- Slide-specific print fixes ---- */
+
+  /* Building a Detail Block — 5-column walkthrough */
+  [data-title="Building a Detail Block"] h2 {
+    font-size: 28px !important;
+    margin-bottom: 2px !important;
+  }
+  [data-title="Building a Detail Block"] .subtitle {
+    font-size: 14px !important;
+    margin-bottom: 6px !important;
+  }
+  [data-title="Building a Detail Block"] > div[style*="grid"] {
+    gap: 8px !important;
+    margin-top: 10px !important;
+  }
+
+  /* Detail Block Anatomy — mockup + alerts */
+  [data-title="Detail Block Anatomy"] h2 {
+    font-size: 28px !important;
+    margin-bottom: 2px !important;
+  }
+  [data-title="Detail Block Anatomy"] .subtitle {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+  }
+  [data-title="Detail Block Anatomy"] .mockup {
+    margin-top: 6px !important;
+  }
+  [data-title="Detail Block Anatomy"] > div[style*="display:flex"] .alert {
+    font-size: 11px !important;
+    padding: 8px 10px !important;
+    margin-top: 8px !important;
+  }
+
+  /* Hidden Fields — split with mockup + sequence */
+  [data-title="Hidden Fields"] h2 {
+    font-size: 28px !important;
+    margin-bottom: 2px !important;
+  }
+  [data-title="Hidden Fields"] .subtitle {
+    font-size: 13px !important;
+    margin-bottom: 2px !important;
+  }
+  [data-title="Hidden Fields"] .split {
+    gap: 16px !important;
+    margin-top: 8px !important;
+  }
+  [data-title="Hidden Fields"] .mockup-body > div {
+    padding: 8px 14px !important;
+    font-size: 12px !important;
+  }
+  [data-title="Hidden Fields"] .alert {
+    margin-top: 10px !important;
+    padding: 8px 12px !important;
+    font-size: 11px !important;
+  }
+
+  /* Broadcast Clock */
+  [data-title="Broadcast Clock"] .info-grid {
+    margin-top: 16px !important;
+  }
+
+  /* Cherry Pick — dense 2-col timeline */
+  [data-title="Cherry Pick"] h2 {
+    font-size: 28px !important;
+    margin-bottom: 2px !important;
+  }
+  [data-title="Cherry Pick"] .subtitle {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+  }
+  [data-title="Cherry Pick"] > div[style*="grid"] {
+    gap: 12px !important;
+    margin-top: 12px !important;
+  }
+  [data-title="Cherry Pick"] .timeline-item {
+    margin-bottom: 8px !important;
+  }
+  [data-title="Cherry Pick"] .timeline-item h4 {
+    font-size: 13px !important;
+  }
+  [data-title="Cherry Pick"] .timeline-item p {
+    font-size: 11px !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Window Splitting + Day-of-Week Splitting — tighten splits */
+  [data-title="Window Splitting"] .split,
+  [data-title="Day-of-Week Splitting"] .split {
+    gap: 16px !important;
+    margin-top: 14px !important;
+  }
+  [data-title="Window Splitting"] h3,
+  [data-title="Day-of-Week Splitting"] h3 {
+    font-size: 18px !important;
+    margin-bottom: 4px !important;
+  }
+  [data-title="Window Splitting"] p,
+  [data-title="Day-of-Week Splitting"] p {
+    font-size: 13px !important;
+  }
+
+  /* Step 3: Send — 2 stacked mockups in right col */
+  [data-title="Step 3: Send"] .split {
+    gap: 12px !important;
+    margin-top: 10px !important;
+  }
+  [data-title="Step 3: Send"] .mockup {
+    margin-top: 0 !important;
+    margin-bottom: 4px !important;
+  }
+  [data-title="Step 3: Send"] .kv-row {
+    padding: 4px 0 !important;
+  }
+  [data-title="Step 3: Send"] .kv-val {
+    font-size: 12px !important;
+  }
+  [data-title="Step 3: Send"] h2 {
+    font-size: 28px !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* Step 1: Edit Copy — dense split with KV + clock format */
+  [data-title="Step 1: Edit Copy"] .split {
+    gap: 16px !important;
+    margin-top: 10px !important;
+  }
+  [data-title="Step 1: Edit Copy"] .clock-format {
+    font-size: 16px !important;
+    padding: 8px 14px !important;
+    margin: 6px 0 !important;
+  }
+
+  /* Known Gotchas — 6 cards in 2x3 */
+  [data-title="Known Gotchas"] h2 {
+    font-size: 28px !important;
+    margin-bottom: 2px !important;
+  }
+  [data-title="Known Gotchas"] .subtitle {
+    font-size: 14px !important;
+    margin-bottom: 4px !important;
+  }
+
+  /* Cheat Sheet — dense split with KV lists */
+  [data-title="Cheat Sheet"] .split {
+    gap: 16px !important;
+    margin-top: 12px !important;
+  }
+  [data-title="Cheat Sheet"] .kv-val {
+    font-size: 13px !important;
+  }
 }
 
 </style>
@@ -1293,7 +1445,7 @@ code {
         <li onclick="goToSlide(1)"><span class="sec-num">01</span><span><span class="sec-title">What is CARIA?</span><span class="sec-desc">Platform overview and key areas</span></span></li>
         <li onclick="goToSlide(4)"><span class="sec-num">02</span><span><span class="sec-title">Creating a CRI</span><span class="sec-desc">Start a new Copy Rotation Instruction</span></span></li>
         <li onclick="goToSlide(5)"><span class="sec-num">03</span><span><span class="sec-title">Edit Copy</span><span class="sec-desc">Add clock numbers and copy details</span></span></li>
-        <li onclick="goToSlide(6)"><span class="sec-num">04</span><span><span class="sec-title">Rotation Detail</span><span class="sec-desc">Build detail blocks with dates, stations and creatives</span></span></li>
+        <li onclick="goToSlide(6)"><span class="sec-num">04</span><span><span class="sec-title">Rotation Detail</span><span class="sec-desc">Build detail blocks — step-by-step walkthrough included</span></span></li>
         <li onclick="goToSlide(12)"><span class="sec-num">05</span><span><span class="sec-title">Cherry Pick Campaigns</span><span class="sec-desc">Handle spot-specific scheduling</span></span></li>
         <li onclick="goToSlide(15)"><span class="sec-num">06</span><span><span class="sec-title">Station Groups</span><span class="sec-desc">Map sales house codes to station groups</span></span></li>
         <li onclick="goToSlide(16)"><span class="sec-num">07</span><span><span class="sec-title">Send to Traffic</span><span class="sec-desc">Submit your CRI to traffic departments</span></span></li>
