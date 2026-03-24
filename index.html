@@ -1294,9 +1294,9 @@ code {
         <li onclick="goToSlide(4)"><span class="sec-num">02</span><span><span class="sec-title">Creating a CRI</span><span class="sec-desc">Start a new Copy Rotation Instruction</span></span></li>
         <li onclick="goToSlide(5)"><span class="sec-num">03</span><span><span class="sec-title">Edit Copy</span><span class="sec-desc">Add clock numbers and copy details</span></span></li>
         <li onclick="goToSlide(6)"><span class="sec-num">04</span><span><span class="sec-title">Rotation Detail</span><span class="sec-desc">Build detail blocks with dates, stations and creatives</span></span></li>
-        <li onclick="goToSlide(11)"><span class="sec-num">05</span><span><span class="sec-title">Cherry Pick Campaigns</span><span class="sec-desc">Handle spot-specific scheduling</span></span></li>
-        <li onclick="goToSlide(14)"><span class="sec-num">06</span><span><span class="sec-title">Station Groups</span><span class="sec-desc">Map sales house codes to station groups</span></span></li>
-        <li onclick="goToSlide(15)"><span class="sec-num">07</span><span><span class="sec-title">Send to Traffic</span><span class="sec-desc">Submit your CRI to traffic departments</span></span></li>
+        <li onclick="goToSlide(12)"><span class="sec-num">05</span><span><span class="sec-title">Cherry Pick Campaigns</span><span class="sec-desc">Handle spot-specific scheduling</span></span></li>
+        <li onclick="goToSlide(15)"><span class="sec-num">06</span><span><span class="sec-title">Station Groups</span><span class="sec-desc">Map sales house codes to station groups</span></span></li>
+        <li onclick="goToSlide(16)"><span class="sec-num">07</span><span><span class="sec-title">Send to Traffic</span><span class="sec-desc">Submit your CRI to traffic departments</span></span></li>
         <li onclick="goToSlide(18)"><span class="sec-num">08</span><span><span class="sec-title">Known Gotchas</span><span class="sec-desc">Common pitfalls and how to avoid them</span></span></li>
         <li onclick="goToSlide(19)"><span class="sec-num">09</span><span><span class="sec-title">Cheat Sheet</span><span class="sec-desc">Quick reference for everyday tasks</span></span></li>
       </ul>
@@ -1732,7 +1732,32 @@ code {
   </div>
 </section>
 
-<!-- SLIDE 9: ROTATION TYPES -->
+<!-- SLIDE 9: 30-HOUR BROADCAST CLOCK -->
+<section class="slide dark" data-title="Broadcast Clock">
+  <div class="ghost-num">07</div>
+  <div class="label">Essential Reference</div>
+  <h2>The 30-hour <span>broadcast clock</span></h2>
+  <p class="subtitle">UK television uses a 30-hour clock. The broadcast day starts at 06:00 and runs to 29:59 (which is 05:59 the next calendar day). You need this for time bands.</p>
+  <div class="info-grid" style="margin-top:32px; max-width:700px;">
+    <div class="info-card">
+      <h4>Standard Times</h4>
+      <p><code>21:45</code> → Band <code>21:00 – 21:59</code><br>
+         <code>22:41</code> → Band <code>22:00 – 22:59</code><br>
+         <code>19:15</code> → Band <code>19:00 – 19:59</code></p>
+    </div>
+    <div class="info-card">
+      <h4>After Midnight</h4>
+      <p><code>00:30</code> → <code>24:30</code> → Band <code>24:00 – 24:59</code><br>
+         <code>01:30</code> → <code>25:30</code> → Band <code>25:00 – 25:59</code><br>
+         <code>05:00</code> → <code>29:00</code> → Band <code>29:00 – 29:59</code></p>
+    </div>
+  </div>
+  <div class="alert alert-info" style="max-width:700px; margin-top:24px;">
+    CARIA time band fields default to <code>06:00 – 29:59</code> (whole broadcast day). For cherry pick campaigns, always narrow to the specific hour or 30-minute window.
+  </div>
+</section>
+
+<!-- SLIDE 10: ROTATION TYPES -->
 <section class="slide accent-bg" data-title="Rotation Types">
   <div class="ghost-num">04</div>
   <div class="label">Rotation Types</div>
@@ -1980,32 +2005,7 @@ code {
   </div>
 </section>
 
-<!-- SLIDE 14: 30-HOUR CLOCK -->
-<section class="slide dark" data-title="Broadcast Clock">
-  <div class="ghost-num">07</div>
-  <div class="label">Reference</div>
-  <h2>The 30-hour <span>broadcast clock</span></h2>
-  <p class="subtitle">UK television uses a 30-hour clock. The broadcast day starts at 06:00 and runs to 29:59 (which is 05:59 the next calendar day).</p>
-  <div class="info-grid" style="margin-top:32px; max-width:700px;">
-    <div class="info-card">
-      <h4>Standard Times</h4>
-      <p><code>21:45</code> → Band <code>21:00 – 21:59</code><br>
-         <code>22:41</code> → Band <code>22:00 – 22:59</code><br>
-         <code>19:15</code> → Band <code>19:00 – 19:59</code></p>
-    </div>
-    <div class="info-card">
-      <h4>After Midnight</h4>
-      <p><code>00:30</code> → <code>24:30</code> → Band <code>24:00 – 24:59</code><br>
-         <code>01:30</code> → <code>25:30</code> → Band <code>25:00 – 25:59</code><br>
-         <code>05:00</code> → <code>29:00</code> → Band <code>29:00 – 29:59</code></p>
-    </div>
-  </div>
-  <div class="alert alert-info" style="max-width:700px; margin-top:24px;">
-    CARIA time band fields default to <code>06:00 – 29:59</code> (whole broadcast day). For cherry pick campaigns, always narrow to the specific hour or 30-minute window.
-  </div>
-</section>
-
-<!-- SLIDE 15: OUTBOX STATUSES -->
+<!-- SLIDE 14: OUTBOX STATUSES -->
 <section class="slide accent-bg" data-title="CRI Statuses">
   <div class="label">Reference</div>
   <h2>CRI <span>statuses</span></h2>
@@ -2050,9 +2050,9 @@ code {
       <div class="fix"><strong>Fix:</strong> Always check Step 1 and reset the "To" date after detail block changes. Do this last before sending.</div>
     </div>
     <div class="gotcha">
-      <h4>"Add copy" button missing</h4>
-      <p>The "Add" button inside "Add copy -->>" only appears when a block has zero clocks assigned.</p>
-      <div class="fix"><strong>Fix:</strong> Create a NEW empty block and add ALL clocks at once. Never try to add to an existing block.</div>
+      <h4>Session drops / timeout</h4>
+      <p>CARIA sessions can drop without warning — especially if left idle. You'll get a blank page or login screen.</p>
+      <div class="fix"><strong>Fix:</strong> Navigate back to cri.peachmedia.com. Your credentials usually auto-fill. Re-open the CRI from the Outbox — saved work is preserved.</div>
     </div>
     <div class="gotcha">
       <h4>Delete triggers confirm dialog</h4>
