@@ -2217,9 +2217,9 @@ code {
       <div class="fix"><strong>Fix:</strong> Type slowly and check the values after entering. If corrupted, clear the field and re-enter.</div>
     </div>
     <div class="gotcha">
-      <h4>Step 3 nav link crashes</h4>
-      <p>Clicking "3. review / send" from within Step 2 can cause a 404 or session crash.</p>
-      <div class="fix"><strong>Fix:</strong> Save from Step 2 → Outbox → click row → "View / Send". Never click Step 3 directly.</div>
+      <h4>Spot times can shift prior to TX</h4>
+      <p>Spot times are set by C4 but can move between the agency receiving the schedule and TX. Cherry pick time band splits can break if a spot shifts across the boundary.</p>
+      <div class="fix"><strong>Fix:</strong> Check CARISA spot times against your CRI time bands prior to TX. Build in a buffer — e.g. split at XX:40 not XX:30.</div>
     </div>
     <div class="gotcha">
       <h4>C4 Streaming checkbox greyed out</h4>
