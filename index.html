@@ -2207,14 +2207,14 @@ code {
       <div class="fix"><strong>Fix:</strong> Navigate back to cri.peachmedia.com. Your credentials usually auto-fill. Re-open the CRI from the Outbox — saved work is preserved.</div>
     </div>
     <div class="gotcha">
-      <h4>Delete triggers confirm dialog</h4>
-      <p>Clicking Delete pops up a browser confirmation that automation tools can't dismiss.</p>
-      <div class="fix"><strong>Fix:</strong> Warn the user before deleting that they'll need to click OK on the popup manually.</div>
+      <h4>Delete triggers confirm popup</h4>
+      <p>Clicking Delete on a detail block triggers a browser confirmation popup. Easy to accidentally confirm if you're working quickly.</p>
+      <div class="fix"><strong>Fix:</strong> Always double-check you're deleting the right block before clicking OK. There's no undo.</div>
     </div>
     <div class="gotcha">
       <h4>Time field corruption</h4>
-      <p>Typing into time band fields can produce corrupted values like "22::0" instead of "22:00".</p>
-      <div class="fix"><strong>Fix:</strong> Use form_input (set value) rather than typing. Always verify time values after setting.</div>
+      <p>Time band fields can be finicky — typing quickly sometimes produces corrupted values like "22::0" instead of "22:00".</p>
+      <div class="fix"><strong>Fix:</strong> Type slowly and check the values after entering. If corrupted, clear the field and re-enter.</div>
     </div>
     <div class="gotcha">
       <h4>Step 3 nav link crashes</h4>
