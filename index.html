@@ -1525,6 +1525,34 @@ code {
       </div>
     </div>
   </div>
+  <!-- Add copy mechanism -->
+  <div class="mockup" style="max-width:720px; margin-top:16px;">
+    <div class="mockup-header">
+      <div class="mockup-dot r"></div>
+      <div class="mockup-dot y"></div>
+      <div class="mockup-dot g"></div>
+      <div class="mockup-title">Adding a clock via "Add copy -->>"</div>
+    </div>
+    <div class="mockup-body" style="padding:12px 20px;">
+      <div style="display:flex;gap:24px;align-items:stretch;">
+        <div style="flex:1;text-align:center;padding:12px;background:rgba(42,111,168,0.08);border-radius:8px;border:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;color:var(--accent-glow);margin-bottom:8px;letter-spacing:1px;">STEP 1</div>
+          <div style="font-size:13px;color:var(--white);margin-bottom:6px;">Click <strong style="color:var(--accent-glow);">Add copy -->></strong></div>
+          <div style="font-size:11px;color:var(--muted);">Opens the clock dropdown</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:12px;background:rgba(42,111,168,0.08);border-radius:8px;border:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;color:var(--accent-glow);margin-bottom:8px;letter-spacing:1px;">STEP 2</div>
+          <div style="font-size:13px;color:var(--white);margin-bottom:6px;">Tick the <strong style="color:var(--green);">☑ checkbox</strong></div>
+          <div style="font-size:11px;color:var(--muted);">Next to the clock you want</div>
+        </div>
+        <div style="flex:1;text-align:center;padding:12px;background:rgba(52,211,153,0.08);border-radius:8px;border:1.5px solid rgba(52,211,153,0.3);">
+          <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:8px;letter-spacing:1px;">STEP 3</div>
+          <div style="font-size:13px;color:var(--white);margin-bottom:6px;">Click the <strong style="color:var(--green);">row itself</strong></div>
+          <div style="font-size:11px;color:var(--muted);">The row click triggers the add — there is no "Add" button</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- SLIDE 8: DETAIL BLOCK FIELDS -->
@@ -1550,8 +1578,49 @@ code {
       <p>Add via "Add copy -->>" dropdown. Check boxes and click "Add". The Add button only appears on empty blocks — always add all clocks to a fresh block at once.</p>
     </div>
   </div>
-  <div class="alert alert-warn" style="max-width:700px; margin-top:24px;">
-    <strong>Important:</strong> "Show more / less detail" resets after each selection. Reveal Date Range first, set dates, then reveal Time Band separately.
+  <div class="split" style="margin-top:20px; gap:32px; align-items:start;">
+    <div class="mockup" style="margin:0; max-width:380px;">
+      <div class="mockup-header">
+        <div class="mockup-dot r"></div>
+        <div class="mockup-dot y"></div>
+        <div class="mockup-dot g"></div>
+        <div class="mockup-title">Show more / less detail >></div>
+      </div>
+      <div class="mockup-body" style="padding:0;">
+        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          <span>Date Range</span>
+          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        </div>
+        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          <span>Time Band</span>
+          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        </div>
+        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          <span style="color:var(--accent-glow);font-weight:600;">Days of the week</span>
+          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        </div>
+        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          <span>Start time on first day</span>
+          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        </div>
+        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          <span>End time on last day</span>
+          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        </div>
+        <div style="padding:10px 16px;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+          <span>Detail note</span>
+          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-warn" style="max-width:400px;">
+        <strong>Important:</strong> This dropdown resets after each selection. Reveal Date Range first, set dates, then reveal Time Band separately.
+      </div>
+      <div class="alert alert-info" style="max-width:400px; margin-top:12px;">
+        <strong>Tip:</strong> "Days of the week" is key for day-of-week splitting — lets you run different time bands on different days without clashes.
+      </div>
+    </div>
   </div>
 </section>
 
