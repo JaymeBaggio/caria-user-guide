@@ -1294,11 +1294,11 @@ code {
         <li onclick="goToSlide(4)"><span class="sec-num">02</span><span><span class="sec-title">Creating a CRI</span><span class="sec-desc">Start a new Copy Rotation Instruction</span></span></li>
         <li onclick="goToSlide(5)"><span class="sec-num">03</span><span><span class="sec-title">Edit Copy</span><span class="sec-desc">Add clock numbers and copy details</span></span></li>
         <li onclick="goToSlide(6)"><span class="sec-num">04</span><span><span class="sec-title">Rotation Detail</span><span class="sec-desc">Build detail blocks with dates, stations and creatives</span></span></li>
-        <li onclick="goToSlide(9)"><span class="sec-num">05</span><span><span class="sec-title">Cherry Pick Campaigns</span><span class="sec-desc">Handle spot-specific scheduling</span></span></li>
-        <li onclick="goToSlide(12)"><span class="sec-num">06</span><span><span class="sec-title">Station Groups</span><span class="sec-desc">Map sales house codes to station groups</span></span></li>
-        <li onclick="goToSlide(13)"><span class="sec-num">07</span><span><span class="sec-title">Send to Traffic</span><span class="sec-desc">Submit your CRI to traffic departments</span></span></li>
-        <li onclick="goToSlide(16)"><span class="sec-num">08</span><span><span class="sec-title">Known Gotchas</span><span class="sec-desc">Common pitfalls and how to avoid them</span></span></li>
-        <li onclick="goToSlide(17)"><span class="sec-num">09</span><span><span class="sec-title">Cheat Sheet</span><span class="sec-desc">Quick reference for everyday tasks</span></span></li>
+        <li onclick="goToSlide(11)"><span class="sec-num">05</span><span><span class="sec-title">Cherry Pick Campaigns</span><span class="sec-desc">Handle spot-specific scheduling</span></span></li>
+        <li onclick="goToSlide(14)"><span class="sec-num">06</span><span><span class="sec-title">Station Groups</span><span class="sec-desc">Map sales house codes to station groups</span></span></li>
+        <li onclick="goToSlide(15)"><span class="sec-num">07</span><span><span class="sec-title">Send to Traffic</span><span class="sec-desc">Submit your CRI to traffic departments</span></span></li>
+        <li onclick="goToSlide(18)"><span class="sec-num">08</span><span><span class="sec-title">Known Gotchas</span><span class="sec-desc">Common pitfalls and how to avoid them</span></span></li>
+        <li onclick="goToSlide(19)"><span class="sec-num">09</span><span><span class="sec-title">Cheat Sheet</span><span class="sec-desc">Quick reference for everyday tasks</span></span></li>
       </ul>
     </div>
   </div>
@@ -1525,61 +1525,170 @@ code {
       </div>
     </div>
   </div>
-  <!-- Add copy mechanism -->
-  <div class="mockup" style="max-width:720px; margin-top:16px;">
-    <div class="mockup-header">
-      <div class="mockup-dot r"></div>
-      <div class="mockup-dot y"></div>
-      <div class="mockup-dot g"></div>
-      <div class="mockup-title">Adding a clock via "Add copy -->>"</div>
-    </div>
-    <div class="mockup-body" style="padding:12px 20px;">
-      <div style="display:flex;gap:24px;align-items:stretch;">
-        <div style="flex:1;text-align:center;padding:12px;background:rgba(42,111,168,0.08);border-radius:8px;border:1px solid var(--border);">
-          <div style="font-size:11px;font-weight:700;color:var(--accent-glow);margin-bottom:8px;letter-spacing:1px;">STEP 1</div>
-          <div style="font-size:13px;color:var(--white);margin-bottom:6px;">Click <strong style="color:var(--accent-glow);">Add copy -->></strong></div>
-          <div style="font-size:11px;color:var(--muted);">Opens the clock dropdown</div>
+</section>
+
+<!-- SLIDE 7b: ADD COPY WALKTHROUGH -->
+<section class="slide dark" data-title="Add Copy Walkthrough">
+  <div class="label">Step 2 — Key Action</div>
+  <h2>Adding a clock via <span>"Add copy -->>"</span></h2>
+  <p class="subtitle">There is no visible "Add" button. The trick is to click the row itself after ticking the checkbox. Here's exactly how it works.</p>
+  <div style="display:flex;gap:28px;margin-top:32px;max-width:1000px;">
+    <!-- STEP 1 -->
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:700;color:var(--accent-glow);letter-spacing:1.5px;margin-bottom:12px;">STEP 1</div>
+      <div class="mockup" style="margin:0;">
+        <div class="mockup-header">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-title">Detail Block</div>
         </div>
-        <div style="flex:1;text-align:center;padding:12px;background:rgba(42,111,168,0.08);border-radius:8px;border:1px solid var(--border);">
-          <div style="font-size:11px;font-weight:700;color:var(--accent-glow);margin-bottom:8px;letter-spacing:1px;">STEP 2</div>
-          <div style="font-size:13px;color:var(--white);margin-bottom:6px;">Tick the <strong style="color:var(--green);">☑ checkbox</strong></div>
-          <div style="font-size:11px;color:var(--muted);">Next to the clock you want</div>
-        </div>
-        <div style="flex:1;text-align:center;padding:12px;background:rgba(52,211,153,0.08);border-radius:8px;border:1.5px solid rgba(52,211,153,0.3);">
-          <div style="font-size:11px;font-weight:700;color:var(--green);margin-bottom:8px;letter-spacing:1px;">STEP 3</div>
-          <div style="font-size:13px;color:var(--white);margin-bottom:6px;">Click the <strong style="color:var(--green);">row itself</strong></div>
-          <div style="font-size:11px;color:var(--muted);">The row click triggers the add — there is no "Add" button</div>
+        <div class="mockup-body" style="padding:14px;">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:10px;">No clocks assigned yet</div>
+          <div style="position:relative;display:inline-block;">
+            <span style="font-size:13px;color:var(--accent-glow);font-weight:600;padding:6px 14px;background:rgba(42,111,168,0.15);border-radius:6px;cursor:pointer;">Add copy -->></span>
+            <span style="position:absolute;inset:-8px -10px;border:2.5px solid var(--red-soft);border-radius:12px;pointer-events:none;"></span>
+            <span style="position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:9px;font-family:'Inter',sans-serif;color:var(--red-soft);font-weight:700;white-space:nowrap;letter-spacing:0.5px;">CLICK HERE</span>
+          </div>
         </div>
       </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px;">Click the button to open the clock dropdown list.</p>
+    </div>
+    <!-- STEP 2 -->
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:700;color:var(--accent-glow);letter-spacing:1.5px;margin-bottom:12px;">STEP 2</div>
+      <div class="mockup" style="margin:0;">
+        <div class="mockup-header">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-title">Clock Dropdown</div>
+        </div>
+        <div class="mockup-body" style="padding:0;">
+          <div style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;color:var(--muted);">
+            <div style="width:15px;height:15px;border:2px solid var(--border);border-radius:3px;"></div>
+            <span>REC/KKSB134/020 — 20s</span>
+          </div>
+          <div style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;position:relative;">
+            <div style="position:relative;">
+              <div style="width:15px;height:15px;border:2px solid var(--green);border-radius:3px;display:flex;align-items:center;justify-content:center;background:rgba(52,211,153,0.15);">
+                <span style="color:var(--green);font-size:10px;font-weight:700;">✓</span>
+              </div>
+              <span style="position:absolute;inset:-6px -6px;border:2.5px solid var(--red-soft);border-radius:8px;pointer-events:none;"></span>
+            </div>
+            <span style="color:var(--white);">CHT/BUTT001/005 — 5s</span>
+            <span style="position:absolute;top:-16px;left:8px;font-size:9px;color:var(--red-soft);font-weight:700;letter-spacing:0.5px;">TICK THIS</span>
+          </div>
+          <div style="padding:10px 14px;font-size:13px;display:flex;align-items:center;gap:10px;color:var(--muted);">
+            <div style="width:15px;height:15px;border:2px solid var(--border);border-radius:3px;"></div>
+            <span>REC/KKSB136/030 — 30s</span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:10px;">Tick the checkbox next to the clock you want to add.</p>
+    </div>
+    <!-- STEP 3 -->
+    <div style="flex:1;">
+      <div style="font-size:12px;font-weight:700;color:var(--green);letter-spacing:1.5px;margin-bottom:12px;">STEP 3</div>
+      <div class="mockup" style="margin:0;">
+        <div class="mockup-header">
+          <div class="mockup-dot r"></div>
+          <div class="mockup-dot y"></div>
+          <div class="mockup-dot g"></div>
+          <div class="mockup-title">Clock Dropdown</div>
+        </div>
+        <div class="mockup-body" style="padding:0;">
+          <div style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;color:var(--muted);">
+            <div style="width:15px;height:15px;border:2px solid var(--border);border-radius:3px;"></div>
+            <span>REC/KKSB134/020 — 20s</span>
+          </div>
+          <div style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;position:relative;background:rgba(52,211,153,0.08);cursor:pointer;">
+            <div style="width:15px;height:15px;border:2px solid var(--green);border-radius:3px;display:flex;align-items:center;justify-content:center;background:rgba(52,211,153,0.15);">
+              <span style="color:var(--green);font-size:10px;font-weight:700;">✓</span>
+            </div>
+            <span style="color:var(--white);font-weight:600;">CHT/BUTT001/005 — 5s</span>
+            <span style="position:absolute;inset:-4px -4px;border:2.5px solid var(--red-soft);border-radius:8px;pointer-events:none;"></span>
+            <span style="position:absolute;top:-20px;right:10px;font-size:9px;color:var(--red-soft);font-weight:700;letter-spacing:0.5px;">CLICK THE ROW</span>
+          </div>
+          <div style="padding:10px 14px;font-size:13px;display:flex;align-items:center;gap:10px;color:var(--muted);">
+            <div style="width:15px;height:15px;border:2px solid var(--border);border-radius:3px;"></div>
+            <span>REC/KKSB136/030 — 30s</span>
+          </div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:var(--green);margin-top:10px;font-weight:500;">Click the row text — this triggers the add. There is no separate "Add" button.</p>
     </div>
   </div>
 </section>
 
-<!-- SLIDE 8: DETAIL BLOCK FIELDS -->
+<!-- SLIDE 8: DETAIL BLOCK — WHAT YOU SEE -->
 <section class="slide dark" data-title="Detail Block Anatomy">
   <div class="label">Step 2 — continued</div>
-  <h2>Detail block <span>anatomy</span></h2>
-  <p class="subtitle" style="margin-bottom:8px;">Each detail block can carry a combination of the following fields. Hidden fields must be revealed via "Show more / less detail".</p>
-  <div class="info-grid" style="margin-top:16px;">
-    <div class="info-card">
-      <h4>Stations</h4>
-      <p>Which station group to target. Click "Select stations" to choose from C4-NETWORK, Owned, Partners, or C4 Streaming. Use "Add stations from Detail N" to copy from another block.</p>
+  <h2>What a detail block <span>looks like</span></h2>
+  <p class="subtitle" style="margin-bottom:12px;">This is the actual layout you'll see in CARIA when editing a detail block. Key actions are annotated.</p>
+  <div class="mockup" style="max-width:860px; margin-top:16px;">
+    <div class="mockup-header">
+      <div class="mockup-dot r"></div>
+      <div class="mockup-dot y"></div>
+      <div class="mockup-dot g"></div>
+      <div class="mockup-title">Step 2 — Copy Relationships</div>
     </div>
-    <div class="info-card">
-      <h4>Date Range</h4>
-      <p>Hidden by default. Click "Show more / less detail" then select "Date Range" to reveal. Enter From and To dates in DD.MM.YYYY. Use "Copy dates down" for multiple clocks.</p>
-    </div>
-    <div class="info-card">
-      <h4>Time Band</h4>
-      <p>Hidden by default. Reveal via "Show more / less detail" then "Time Band". Defaults to full day (06:00–29:59). For cherry pick, narrow to the specific hour or 30-minute window.</p>
-    </div>
-    <div class="info-card">
-      <h4>Clock Numbers</h4>
-      <p>Add via "Add copy -->>" dropdown. Check boxes and click "Add". The Add button only appears on empty blocks — always add all clocks to a fresh block at once.</p>
+    <div class="mockup-body" style="padding:16px; background:#f5f5f0; color:#333;">
+      <!-- Detail block header -->
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <span style="font-weight:700;font-size:14px;color:#333;">Detail 1</span>
+        <div style="display:flex;gap:6px;">
+          <span style="font-size:11px;padding:4px 10px;background:#fff;border:1px solid #bbb;border-radius:3px;color:#333;">Edit</span>
+          <span style="font-size:11px;padding:4px 10px;background:#fff;border:1px solid #bbb;border-radius:3px;color:#333;">Delete</span>
+          <span style="font-size:11px;padding:4px 10px;background:#fff;border:1px solid #bbb;border-radius:3px;color:#333;">Insert</span>
+        </div>
+      </div>
+      <!-- Stations row -->
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #ddd;font-size:13px;">
+        <span style="color:#666;min-width:100px;">Stations:</span>
+        <span style="position:relative;font-size:12px;padding:4px 12px;background:#e8f4e8;border:1px solid #4a4;border-radius:3px;color:#333;font-weight:500;">Owned
+          <span style="position:absolute;inset:-6px -8px;border:2.5px solid var(--red-soft);border-radius:8px;pointer-events:none;"></span>
+        </span>
+        <span style="font-size:11px;color:#888;font-style:italic;">← Click "Select stations" to change</span>
+      </div>
+      <!-- Clock row -->
+      <div style="display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #ddd;font-size:13px;">
+        <span style="color:#666;min-width:100px;">Copy:</span>
+        <span style="font-size:12px;padding:4px 10px;background:#fff;border:1px solid #ccc;border-radius:3px;font-family:'Space Mono',monospace;color:#333;">CHT/BUTT001/005</span>
+        <span style="font-size:11px;color:#888;">PTS BK Introduction 5"</span>
+      </div>
+      <!-- Action buttons row -->
+      <div style="display:flex;gap:16px;margin-top:14px;flex-wrap:wrap;align-items:center;">
+        <span style="position:relative;font-size:12px;padding:5px 14px;background:#d4e8f7;border:1px solid #7ab;border-radius:3px;color:#234;font-weight:600;cursor:pointer;">Add copy -->>
+          <span style="position:absolute;inset:-6px -8px;border:2.5px solid var(--red-soft);border-radius:10px;pointer-events:none;"></span>
+          <span style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:9px;font-family:'Inter',sans-serif;color:var(--red-soft);font-weight:700;white-space:nowrap;letter-spacing:0.5px;">ADD CLOCKS</span>
+        </span>
+        <span style="font-size:12px;padding:5px 14px;background:#fff;border:1px solid #bbb;border-radius:3px;color:#555;">Add stations from Detail N</span>
+        <span style="position:relative;font-size:12px;padding:5px 14px;background:#ffefc2;border:1px solid #c90;border-radius:3px;color:#333;font-weight:600;cursor:pointer;">Show more / less detail >>
+          <span style="position:absolute;inset:-6px -8px;border:2.5px solid var(--red-soft);border-radius:10px;pointer-events:none;"></span>
+          <span style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);font-size:9px;font-family:'Inter',sans-serif;color:var(--red-soft);font-weight:700;white-space:nowrap;letter-spacing:0.5px;">REVEAL HIDDEN FIELDS</span>
+        </span>
+      </div>
+      <!-- Shortcut row -->
+      <div style="display:flex;gap:16px;margin-top:10px;font-size:11px;color:#888;">
+        <span>Copy dates down</span>
+        <span>Copy times down</span>
+      </div>
     </div>
   </div>
-  <div class="split" style="margin-top:20px; gap:32px; align-items:start;">
-    <div class="mockup" style="margin:0; max-width:380px;">
+  <div style="display:flex;gap:16px;margin-top:16px;max-width:860px;">
+    <div class="alert alert-info" style="flex:1;margin:0;">Most fields are <strong>hidden by default</strong>. You won't see Date Range, Time Band, or Days of the week until you reveal them via "Show more / less detail".</div>
+    <div class="alert alert-warn" style="flex:1;margin:0;">The <strong>"Add copy -->>"</strong> button only works on empty blocks. Always create a fresh block and add all clocks at once.</div>
+  </div>
+</section>
+
+<!-- SLIDE 8b: SHOW MORE / LESS DETAIL DROPDOWN -->
+<section class="slide accent-bg" data-title="Hidden Fields">
+  <div class="label">Step 2 — continued</div>
+  <h2>"Show more / less detail" <span>dropdown</span></h2>
+  <p class="subtitle" style="margin-bottom:12px;">Click this button to reveal hidden fields one at a time. The dropdown closes after each selection — you must reopen it for the next field.</p>
+  <div class="split" style="margin-top:20px; gap:40px; align-items:start;">
+    <div class="mockup" style="margin:0; max-width:420px;">
       <div class="mockup-header">
         <div class="mockup-dot r"></div>
         <div class="mockup-dot y"></div>
@@ -1587,38 +1696,52 @@ code {
         <div class="mockup-title">Show more / less detail >></div>
       </div>
       <div class="mockup-body" style="padding:0;">
-        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
-          <span>Date Range</span>
-          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        <div style="padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:500;">Date Range</span>
+          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:2px 8px;font-weight:600;">HIDDEN</span>
         </div>
-        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
-          <span>Time Band</span>
-          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        <div style="padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-weight:500;">Time Band</span>
+          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:2px 8px;font-weight:600;">HIDDEN</span>
         </div>
-        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
-          <span style="color:var(--accent-glow);font-weight:600;">Days of the week</span>
-          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+        <div style="padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;">
+          <span style="color:var(--accent-glow);font-weight:700;">Days of the week</span>
+          <span style="font-size:10px;color:var(--green);border:1px solid var(--green);border-radius:4px;padding:2px 8px;font-weight:600;">HIDDEN</span>
+          <span style="position:absolute;inset:-4px -4px;border:2.5px solid var(--red-soft);border-radius:8px;pointer-events:none;"></span>
+          <span style="position:absolute;top:-18px;right:16px;font-size:9px;color:var(--red-soft);font-weight:700;letter-spacing:0.5px;">KEY FOR DAY SPLITTING</span>
         </div>
-        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+        <div style="padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
           <span>Start time on first day</span>
-          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 8px;">HIDDEN</span>
         </div>
-        <div style="padding:10px 16px;font-size:13px;border-bottom:1px solid var(--border);cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+        <div style="padding:12px 16px;font-size:14px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
           <span>End time on last day</span>
-          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 8px;">HIDDEN</span>
         </div>
-        <div style="padding:10px 16px;font-size:13px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;">
+        <div style="padding:12px 16px;font-size:14px;display:flex;justify-content:space-between;align-items:center;">
           <span>Detail note</span>
-          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:1px 6px;">HIDDEN</span>
+          <span style="font-size:10px;color:var(--muted);border:1px solid var(--border);border-radius:4px;padding:2px 8px;">HIDDEN</span>
         </div>
       </div>
     </div>
-    <div>
-      <div class="alert alert-warn" style="max-width:400px;">
-        <strong>Important:</strong> This dropdown resets after each selection. Reveal Date Range first, set dates, then reveal Time Band separately.
+    <div style="max-width:400px;">
+      <h3 style="margin-bottom:16px;font-size:18px;">The right sequence</h3>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <span style="min-width:28px;height:28px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;">1</span>
+          <div><strong>Reveal Date Range</strong><br><span style="font-size:13px;color:var(--muted);">Click dropdown → select "Date Range" → set From/To dates</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <span style="min-width:28px;height:28px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;">2</span>
+          <div><strong>Reveal Time Band</strong><br><span style="font-size:13px;color:var(--muted);">Reopen dropdown → select "Time Band" → set hours</span></div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <span style="min-width:28px;height:28px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;">3</span>
+          <div><strong>Reveal Days (if needed)</strong><br><span style="font-size:13px;color:var(--muted);">Reopen again → select "Days of the week" → tick specific days</span></div>
+        </div>
       </div>
-      <div class="alert alert-info" style="max-width:400px; margin-top:12px;">
-        <strong>Tip:</strong> "Days of the week" is key for day-of-week splitting — lets you run different time bands on different days without clashes.
+      <div class="alert alert-warn" style="margin-top:20px;">
+        <strong>Important:</strong> The dropdown resets after each selection. You must reopen it for every field you want to reveal.
       </div>
     </div>
   </div>
